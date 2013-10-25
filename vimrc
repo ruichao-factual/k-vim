@@ -19,7 +19,7 @@
 " General 基础设置
 "==========================================
 
-"set guifont=Monaco:h20          " 字体 && 字号
+set guifont=Monaco:h20          " 字体 && 字号
 
 " history存储长度。
 set history=2000
@@ -38,6 +38,9 @@ set nocompatible
 set autoread          " 文件修改之后自动载入。
 set shortmess=atI       " 启动的时候不显示那个援助索马里儿童的提示
 
+"set timeoutlen
+set timeoutlen=2000
+
 " 备份,到另一个位置. 防止误删, 目前是取消备份
 "set backup
 "set backupext=.bak
@@ -53,10 +56,10 @@ set cursorline              " 突出显示当前行
 
 "设置 退出vim后，内容显示在终端屏幕, 可以用于查看和复制
 "好处：误删什么的，如果以前屏幕打开，可以找回
-set t_ti= t_te=
+"set t_ti= t_te=
 
 "- 则点击光标不会换,用于复制
-set mouse-=a           " 鼠标暂不启用, 键盘党....
+set mouse=a           " 鼠标暂不启用, 键盘党....
 " 修复ctrl+m 多光标操作选择的bug，但是改变了ctrl+v进行字符选中时将包含光标下的字符
 "set selection=exclusive
 set selection=inclusive
@@ -68,7 +71,7 @@ set title                " change the terminal's title
 set novisualbell           " don't beep
 set noerrorbells         " don't beep
 set t_vb=
-set tm=500
+"set tm=500
 
 "==========================================
 " Show 展示/排班等界面格式设置
@@ -119,7 +122,6 @@ set expandtab                " 将Tab自动转化成空格    [需要输入真�
 
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 
-set showcmd
 " A buffer becomes hidden when it is abandoned
 set hidden
 set wildmode=list:longest
@@ -173,14 +175,9 @@ set laststatus=2
 " file encode, 文件编码,格式
 "==========================================
 " 设置新文件的编码为 UTF-8
-"set fileencodings=ucs-bom,utf-8,gb2312,big5,latin1
-
 set encoding=utf-8
 " 自动判断编码时，依次尝试以下编码：
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
-set helplang=cn
-"language message zh_CN.UTF-8
-"set langmenu=zh_CN.UTF-8
 "set enc=2byte-gb18030
 " 下面这句只影响普通模式 (非图形界面) 下的 Vim。
 set termencoding=utf-8
@@ -258,10 +255,10 @@ nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 "强迫自己用 hjkl
-map <Left> <Nop>
-map <Right> <Nop>
-map <Up> <Nop>
-map <Down> <Nop>
+"map <Left> <Nop>
+"map <Right> <Nop>
+"map <Up> <Nop>
+"map <Down> <Nop>
 
 "Treat long lines as break lines (useful when moving around in them)
 "se swap之后，同物理行上线直接跳
@@ -295,11 +292,9 @@ nnoremap <C-y> 2<C-y>
 nnoremap <F2> :set nonumber! number?<CR>
 nnoremap <F3> :set list! list?<CR>
 nnoremap <F4> :set wrap! wrap?<CR>
-              "set paste
-set pastetoggle=<F5>            " when in insert mode, press <F2> to go to
-                                "    paste mode, where you can paste mass data
-                                "    that won't be autoindented
-
+"set paste when in insert mode, press <F5> to go to paste mode where you can
+"paste mass data that won't be autoindented
+set pastetoggle=<F5> 
 " disbale paste mode when leaving insert mode
 au InsertLeave * set nopaste
 
@@ -308,7 +303,7 @@ nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
 
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
 map <space> /
-"map <c-space> ?"
+"map <c-@> ?"
 
 map Y y$
 "cmap w!! %!sudo tee > /dev/null %
