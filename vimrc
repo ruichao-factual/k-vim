@@ -1,10 +1,8 @@
 "==========================================
-" Author:  wklken
-" Version: 6
-" Email: wklken@yeah.net
-" BlogPost: http://wklken.me
-" ReadMe: README.md
-" Last_modify: 2013-08-04
+" Author:  ruichao
+" Version: 1
+" Email: ruichaoxue@gmail.com
+" Last_modify: 2013-10-27
 " Sections:
 "     ->General 基础设置
 "     ->Show 展示/排班等界面格式设置
@@ -15,14 +13,34 @@
 "     ->colortheme 主题,及一些展示上颜色的修改
 "==========================================
 
-"==========================================
-" General 基础设置
-"==========================================
+" =>  General 基础设置
+    " set how many lines of history VIM has to remember
+    set history=1000
+    " set to auto read when a file is changed from the outside
+    set autoread
+    " Automatically enable mouse usage
+    set mouse=a
+    " Hide the mouse cursor while typing
+    set mousehide
 
-set guifont=Monaco:h20          " 字体 && 字号
+    " With a map leader, it's possible to do extra key combinations
+    let mapleader=","
+    let g:mapleader=","
 
-" history存储长度。
-set history=2000
+    " timespan for a combine key command
+    set timeoutlen=1000
+
+" => VIM user interface
+    " Set 7 lines to the cursor - when moving vertically using j/k
+    " the number of context lines you would like to see above and below the cursor
+    set scrolloff=7
+    " allow for cursor beyond last character
+    set virtualedit=onemore
+    " set shortmess+=filmnrxoOtT   ??
+
+
+set guifont=Monaco:h20         "mac font and size
+
 
 "检测文件类型
 filetype on
@@ -35,11 +53,8 @@ filetype plugin indent on
 
 "非兼容vi模式。去掉讨厌的有关vi一致性模式，避免以前版本的一些bug和局限
 set nocompatible
-set autoread          " 文件修改之后自动载入。
-set shortmess=atI       " 启动的时候不显示那个援助索马里儿童的提示
+"set shortmess=atI       " 启动的时候不显示那个援助索马里儿童的提示
 
-"set timeoutlen
-set timeoutlen=2000
 
 " 备份,到另一个位置. 防止误删, 目前是取消备份
 "set backup
@@ -55,18 +70,15 @@ set cursorcolumn
 set cursorline              " 突出显示当前行
 
 "设置 退出vim后，内容显示在终端屏幕, 可以用于查看和复制
-"好处：误删什么的，如果以前屏幕打开，可以找回
 "set t_ti= t_te=
 
 "- 则点击光标不会换,用于复制
-set mouse=a           " 鼠标暂不启用, 键盘党....
 " 修复ctrl+m 多光标操作选择的bug，但是改变了ctrl+v进行字符选中时将包含光标下的字符
 "set selection=exclusive
 set selection=inclusive
 set selectmode=mouse,key
 
 " No annoying sound on errors
-" 去掉输入错误的提示声音
 set title                " change the terminal's title
 set novisualbell           " don't beep
 set noerrorbells         " don't beep
@@ -79,44 +91,43 @@ set t_vb=
 
 "显示行号：
 set number
-set nowrap                    " 取消换行。
+set nowrap
 
 "括号配对情况
 set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
-"设置文内智能搜索提示
-" 高亮search命中的文本。
+" highlight search content
 set hlsearch
-" 搜索时忽略大小写
+" ignorecase when search
 set ignorecase
-" 随着键入即时搜索
+" ignore case if search pattern is all lowercase, case-sensitive otherwise
+set smartcase
+" Make search act like search in modern browsers
 set incsearch
-" 有一个或以上大写字母时仍大小写敏感
-set smartcase     " ignore case if search pattern is all lowercase, case-sensitive otherwise
-
-" 代码折叠
-set foldenable
-" 折叠方法
-" manual    手工折叠
-" indent    使用缩进表示折叠
-" expr      使用表达式定义折叠
-" syntax    使用语法定义折叠
-" diff      对没有更改的文本进行折叠
-" marker    使用标记进行折叠, 默认标记是 {{{ 和 }}}
-set foldmethod=indent
-set foldlevel=99
+" => code fold
+    set foldenable
+    " 折叠方法
+    " manual    手工折叠
+    " indent    使用缩进表示折叠
+    " expr      使用表达式定义折叠
+    " syntax    使用语法定义折叠
+    " diff      对没有更改的文本进行折叠
+    " marker    使用标记进行折叠, 默认标记是 {{{ 和 }}}
+    set foldmethod=indent
+    set foldlevel=99
 
 "Smart indent
 set smartindent
 set autoindent    " always set autoindenting on
-" never add copyindent, case error   " copy the previous indentation on autoindenting
-
-set tabstop=4                " 设置Tab键的宽度        [等同的空格个数]
-set shiftwidth=4  " number of spaces to use for autoindenting
+" set table width
+set tabstop=4
+" number of spaces to use for autoindenting
+set shiftwidth=4
 set softtabstop=4             " 按退格键时可以一次删掉 4 个空格
-set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop 按退格键时可以一次删掉 4 个空格
+" insert tabs on the start of a line according to shiftwidth, not tabstop
+set smarttab
 
 set expandtab                " 将Tab自动转化成空格    [需要输入真正的Tab键时，使用 Ctrl+V + Tab]
 
@@ -129,12 +140,12 @@ set ttyfast
 
 
 "行号变成相对，可以用 nj  nk   进行跳转 5j   5k 上下跳5行
-set relativenumber
-au FocusLost * :set number
-au FocusGained * :set relativenumber
+"set relativenumber
+"au FocusLost * :set number
+"au FocusGained * :set relativenumber
 " 插入模式下用绝对行号, 普通模式下用相对
-autocmd InsertEnter * :set number
-autocmd InsertLeave * :set relativenumber
+"autocmd InsertEnter * :set number
+"autocmd InsertLeave * :set relativenumber
 function! NumberToggle()
   if(&relativenumber == 1)
     set number
@@ -154,20 +165,11 @@ endif
 
 set wildignore=*.swp,*.bak,*.pyc,*.class
 
-"显示当前的行号列号：
-set ruler
-""在状态栏显示正在输入的命令
+" show command in status line
 set showcmd
-" Show current mode
-set showmode
-
-" Set 7 lines to the cursor - when moving vertically using j/k 上下滚动,始终在中间
-set scrolloff=7
 
 "set winwidth=79
 
-" 命令行（在状态行下）的高度，默认为1，这里是2
-set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
 " Always show the status line
 set laststatus=2
 
@@ -200,12 +202,12 @@ autocmd! bufwritepost .vimrc source % " vimrc文件修改之后自动加载。 l
 "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
 "set completeopt+=longest
 set completeopt=longest,menu
- 
+
 "离开插入模式后自动关闭预览窗口
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 "回车即选中当前项
 inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
- 
+
 "上下左右键的行为 会显示其他信息
 inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
@@ -225,7 +227,6 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-"删除多余空格
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
 func! DeleteTrailingWS()
   exe "normal mz"
@@ -271,7 +272,7 @@ cnoremap <C-k> <t_ku>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
-"Smart way to move between windows 分屏窗口移动
+"Smart way to move between windows
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
@@ -292,9 +293,9 @@ nnoremap <C-y> 2<C-y>
 nnoremap <F2> :set nonumber! number?<CR>
 nnoremap <F3> :set list! list?<CR>
 nnoremap <F4> :set wrap! wrap?<CR>
-"set paste when in insert mode, press <F5> to go to paste mode where you can
+"set paste when in insert mode, press <F12> to go to paste mode where you can
 "paste mass data that won't be autoindented
-set pastetoggle=<F5> 
+set pastetoggle=<F12>
 " disbale paste mode when leaving insert mode
 au InsertLeave * set nopaste
 
@@ -302,11 +303,10 @@ nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
 
 
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
+"map <space> /
 "map <c-@> ?"
 
 map Y y$
-"cmap w!! %!sudo tee > /dev/null %
 " w!! to sudo & write a file
 cmap w!! w !sudo tee >/dev/null %
 noremap <silent><leader>/ :nohls<CR>
@@ -331,11 +331,10 @@ nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
 
 "Use arrow key to change buffer"
-noremap <left> :bp<CR>
-noremap <right> :bn<CR>
+"noremap <left> :bp<CR>
+"noremap <right> :bn<CR>
 
 ""Jump to start and end of line using the home row keys
-""
 nmap t o<ESC>k
 nmap T O<ESC>j
 
@@ -347,6 +346,7 @@ nmap T O<ESC>j
 
 " Quickly close the current window
 nnoremap <leader>q :q<CR>
+nnoremap <leader>wq :wq<CR>
 
 " Swap implementations of ` and ' jump to markers
 " By default, ' jumps to the marked line, ` jumps to the marked line and
@@ -410,13 +410,26 @@ Bundle 'gmarik/vundle'
 
 "################### 导航 ###################"
 "目录导航
-Bundle 'scrooloose/nerdtree'
-map <leader>n :NERDTreeToggle<CR>
-let NERDTreeHighlightCursorline=1
-let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
-let g:netrw_home='~/bak'
-"close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
+    Bundle 'scrooloose/nerdtree'
+    map <leader>n :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+    map <leader>e :NERDTreeFind<CR>
+    let NERDTreeShowBookmarks=1
+    let NERDTreeChDirMode=0
+    let NERDTreeQuitOnOpen=1
+    let NERDTreeMouseMode=2
+    let NERDTreeShowHidden=1
+    let NERDTreeKeepTreeInNewTab=1
+    let g:nerdtree_tabs_open_on_gui_startup=0
+    let NERDTreeHighlightCursorline=1
+    let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
+    let g:netrw_home='~/bak'
+    "close vim if the only window left open is a NERDTree
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
+
+" => Numbers.vim
+    Bundle 'myusuf3/numbers.vim'
+    nnoremap <F4> :NumbersToggle<CR>
+    nnoremap <F3> :set nonumber!<CR>
 
 "for minibufferexpl
 Bundle 'fholgado/minibufexpl.vim'
