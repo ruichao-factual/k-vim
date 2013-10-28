@@ -78,12 +78,11 @@ set cursorline              " 突出显示当前行
 set selection=inclusive
 set selectmode=mouse,key
 
-" No annoying sound on errors
 set title                " change the terminal's title
-set novisualbell           " don't beep
-set noerrorbells         " don't beep
-set t_vb=
-"set tm=500
+    " No annoying sound on errors
+    set novisualbell
+    set noerrorbells
+    set t_vb=
 
 "==========================================
 " Show 展示/排班等界面格式设置
@@ -138,23 +137,6 @@ set hidden
 set wildmode=list:longest
 set ttyfast
 
-
-"行号变成相对，可以用 nj  nk   进行跳转 5j   5k 上下跳5行
-"set relativenumber
-"au FocusLost * :set number
-"au FocusGained * :set relativenumber
-" 插入模式下用绝对行号, 普通模式下用相对
-"autocmd InsertEnter * :set number
-"autocmd InsertLeave * :set relativenumber
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set number
-  else
-    set relativenumber
-  endif
-endfunc
-nnoremap <C-n> :call NumberToggle()<cr>
-
 "create undo file
 set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
@@ -176,21 +158,57 @@ set laststatus=2
 "==========================================
 " file encode, 文件编码,格式
 "==========================================
-" 设置新文件的编码为 UTF-8
-set encoding=utf-8
-" 自动判断编码时，依次尝试以下编码：
-set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
-"set enc=2byte-gb18030
-" 下面这句只影响普通模式 (非图形界面) 下的 Vim。
-set termencoding=utf-8
+" =>  encoding, filecodings setting
+    " Set utf8 as standard encoding and en_US as the standard language
+    set encoding=utf8
 
-" Use Unix as the standard file type
-set ffs=unix,dos,mac
+    "encoding script
+    if has("multi_byte")
+        "set fileencoding priority
+        if getfsize(expand("%")) > 0
+            set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,latain1
+        else
+            set fileencodings=cp936,big5,euc-jp,euc-kr,latain1
+        endif
+        "CJK environment detection and corresponding setting
+        if v:lang =~ "^zh_CN"
+            "Use cp936 to support GBK, euc-cn == gb2312
+            set encoding=cp936
+            set termencoding=cp936
+            set fileencoding=cp936
+        elseif v:lang =~ "^zh_TW"
+            "cp950, big5 or euc-tw
+            set encoding=big5
+            set termencoding=big5
+            set fileencoding=big5
+        elseif v:lang =~ "^ko"
+            set encoding=euc-kr
+            set termencoding=euc-kr
+            set fileencoding=euc-kr
+        elseif v:lang =~ "^ja_JP"
+            set encoding=euc-jp
+            set termencoding=euc-jp
+            set fileencoding=enc-jp
+        endif
+        " Detect UTF-8 locale, and replace CJK setting if needed
+        if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
+            set encoding=utf-8
+            set termencoding=utf-8
+            set fileencoding=utf-8
+        endif
+    else
+        echoerr "Sorry, this version of (g)vim was not compiled with multi_byte"
+    endif
 
-" 如遇Unicode值大于255的文本，不必等到空格再折行。
-set formatoptions+=m
-" 合并两行中文时，不在中间加空格：
-set formatoptions+=B
+
+    " Use Unix as the standard file type
+    set ffs=unix,mac,dos
+
+    " 如遇Unicode值大于255的文本，不必等到空格再折行。
+    set formatoptions+=m
+    " 合并两行中文时，不在中间加空格：
+    set formatoptions+=B
+" }
 
 "==========================================
 " others 其它配置
@@ -248,8 +266,6 @@ set whichwrap+=<,>,h,l
 "==========================================
 "hot key  自定义快捷键
 "==========================================
-let mapleader = ','
-let g:mapleader = ','
 
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -262,7 +278,7 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 "map <Down> <Nop>
 
 "Treat long lines as break lines (useful when moving around in them)
-"se swap之后，同物理行上线直接跳
+"set swap之后，同物理行上线直接跳
 map j gj
 map k gk
 
@@ -281,32 +297,27 @@ map <C-l> <C-W>l
 " Go to home and end using capitalized directions
 noremap H 0
 noremap L $
-
 " Remap VIM 0 to first non-blank character
 map 0 ^
-
+map Y y$
 " Speed up scrolling of the viewport slightly
 nnoremap <C-e> 2<C-e>
 nnoremap <C-y> 2<C-y>
 
-""为方便复制，用<F2>开启/关闭行号显示:
-nnoremap <F2> :set nonumber! number?<CR>
-nnoremap <F3> :set list! list?<CR>
-nnoremap <F4> :set wrap! wrap?<CR>
+nnoremap <F2> :set wrap! wrap?<CR>
 "set paste when in insert mode, press <F12> to go to paste mode where you can
 "paste mass data that won't be autoindented
 set pastetoggle=<F12>
 " disbale paste mode when leaving insert mode
 au InsertLeave * set nopaste
 
-nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
+" nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
 
 
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
 "map <space> /
 "map <c-@> ?"
 
-map Y y$
 " w!! to sudo & write a file
 cmap w!! w !sudo tee >/dev/null %
 noremap <silent><leader>/ :nohls<CR>
@@ -348,19 +359,10 @@ nmap T O<ESC>j
 nnoremap <leader>q :q<CR>
 nnoremap <leader>wq :wq<CR>
 
-" Swap implementations of ` and ' jump to markers
-" By default, ' jumps to the marked line, ` jumps to the marked line and
-" column, so swap them
-nnoremap ' `
-nnoremap ` '
-
 " Use ,d (or ,dd or ,dj or 20,dd) to delete a line without adding it to the
 " yanked stack (also, in visual mode)
 "nnoremap <silent> <leader>d "_d
 "vnoremap <silent> <leader>d "_d
-
-" remap U to <C-r> for easier redo
-nnoremap U <C-r>
 
 "au VimResized * exe "normal! \<c-w>=""
 
