@@ -13,7 +13,7 @@
 "     ->colortheme 主题,及一些展示上颜色的修改
 "==========================================
 
-" =>  General 基础设置
+" ===  General config  =========================================
     " set how many lines of history VIM has to remember
     set history=1000
     " set to auto read when a file is changed from the outside
@@ -22,6 +22,8 @@
     set mouse=a
     " Hide the mouse cursor while typing
     set mousehide
+    "非兼容vi模式。去掉讨厌的有关vi一致性模式，避免以前版本的一些bug和局限
+    set nocompatible
 
     " With a map leader, it's possible to do extra key combinations
     let mapleader=","
@@ -30,16 +32,13 @@
     " timespan for a combine key command
     set timeoutlen=1000
 
-" => VIM user interface
+" === VIM user interface ========================================
     " Set 7 lines to the cursor - when moving vertically using j/k
     " the number of context lines you would like to see above and below the cursor
     set scrolloff=7
     " allow for cursor beyond last character
     set virtualedit=onemore
     " set shortmess+=filmnrxoOtT   ??
-
-
-set guifont=Monaco:h20         "mac font and size
 
 
 "检测文件类型
@@ -51,8 +50,6 @@ filetype plugin on
 "启动自动补全
 filetype plugin indent on
 
-"非兼容vi模式。去掉讨厌的有关vi一致性模式，避免以前版本的一些bug和局限
-set nocompatible
 "set shortmess=atI       " 启动的时候不显示那个援助索马里儿童的提示
 
 
@@ -65,9 +62,10 @@ set nocompatible
 set nobackup
 set noswapfile
 
-" 突出显示当前行等 不喜欢这种定位可注解
-set cursorcolumn
-set cursorline              " 突出显示当前行
+
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
 
 "设置 退出vim后，内容显示在终端屏幕, 可以用于查看和复制
 "set t_ti= t_te=
@@ -78,90 +76,55 @@ set cursorline              " 突出显示当前行
 set selection=inclusive
 set selectmode=mouse,key
 
-set title                " change the terminal's title
     " No annoying sound on errors
     set novisualbell
     set noerrorbells
     set t_vb=
 
-"==========================================
-" Show 展示/排班等界面格式设置
-"==========================================
+" ===  Show 展示/排班等界面格式设置 ============================
+    set title          " change the terminal's title
+    set number         " Show line number
+    set wrap           " Turn wrap on
+    " map <F2> to toggle wrap
+    nnoremap <F2> :set wrap! wrap?<CR>
+    " show matching brackets when text indicator is over them
+    set showmatch
+    " Highlight problematic whitespace
+    set list
+    set listchars=tab:>·,trail:•,extends:#,nbsp:.
+    " add < and > as matchpairs
+    set matchpairs+=<:>
+    " How many tenths of a second to blink when matching brackets
+    set mat=2
+    " search config
+    set ignorecase     " Ignore case
+    set incsearch      " Show search result while typing
+    set hlsearch       " Highlight search content
+    set cursorcolumn   " Highlight current line
+    set cursorline     " Highlight current column
+    set showcmd        " Show command in status line
+    set laststatus=2   " Always show the status line
 
-"显示行号：
-set number
-set nowrap
 
-"括号配对情况
-set showmatch
-" How many tenths of a second to blink when matching brackets
-set mat=2
+" ===  Fold config  ===========================================
+    set foldenable     " Auto fold code
+    set foldmethod=indent " Fold method
+    set foldlevel=99      " Set unfold as default
+    set foldcolumn=2      " Add extra margin to the left
+    " Fold hot keys
+    nmap <leader>f0 :set foldlevel=0<CR>
+    nmap <leader>f1 :set foldlevel=1<CR>
+    nmap <leader>f2 :set foldlevel=2<CR>
+    nmap <leader>f3 :set foldlevel=3<CR>
+    nmap <leader>f4 :set foldlevel=4<CR>
+    nmap <leader>f5 :set foldlevel=5<CR>
+    nmap <leader>f6 :set foldlevel=6<CR>
+    nmap <leader>f7 :set foldlevel=7<CR>
+    nmap <leader>f8 :set foldlevel=8<CR>
+    nmap <leader>f9 :set foldlevel=9<CR>
 
-" highlight search content
-set hlsearch
-" ignorecase when search
-set ignorecase
-" ignore case if search pattern is all lowercase, case-sensitive otherwise
-set smartcase
-" Make search act like search in modern browsers
-set incsearch
-" => code fold
-    set foldenable
-    " 折叠方法
-    " manual    手工折叠
-    " indent    使用缩进表示折叠
-    " expr      使用表达式定义折叠
-    " syntax    使用语法定义折叠
-    " diff      对没有更改的文本进行折叠
-    " marker    使用标记进行折叠, 默认标记是 {{{ 和 }}}
-    set foldmethod=indent
-    set foldlevel=99
-
-"Smart indent
-set smartindent
-set autoindent    " always set autoindenting on
-" set table width
-set tabstop=4
-" number of spaces to use for autoindenting
-set shiftwidth=4
-set softtabstop=4             " 按退格键时可以一次删掉 4 个空格
-" insert tabs on the start of a line according to shiftwidth, not tabstop
-set smarttab
-
-set expandtab                " 将Tab自动转化成空格    [需要输入真正的Tab键时，使用 Ctrl+V + Tab]
-
-set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
-
-" A buffer becomes hidden when it is abandoned
-set hidden
-set wildmode=list:longest
-set ttyfast
-
-"create undo file
-set undolevels=1000         " How many undos
-set undoreload=10000        " number of lines to save for undo
-if v:version >= 730
-    set undofile                " keep a persistent backup file
-    set undodir=~/bak/vimundo/
-endif
-
-set wildignore=*.swp,*.bak,*.pyc,*.class
-
-" show command in status line
-set showcmd
-
-"set winwidth=79
-
-" Always show the status line
-set laststatus=2
-
-"==========================================
-" file encode, 文件编码,格式
-"==========================================
-" =>  encoding, filecodings setting
-    " Set utf8 as standard encoding and en_US as the standard language
-    set encoding=utf8
-
+" ===  encoding, filecodings setting ==========================
+    set encoding=utf8   " Set utf8 as standard encoding
     "encoding script
     if has("multi_byte")
         "set fileencoding priority
@@ -170,6 +133,7 @@ set laststatus=2
         else
             set fileencodings=cp936,big5,euc-jp,euc-kr,latain1
         endif
+
         "CJK environment detection and corresponding setting
         if v:lang =~ "^zh_CN"
             "Use cp936 to support GBK, euc-cn == gb2312
@@ -190,6 +154,7 @@ set laststatus=2
             set termencoding=euc-jp
             set fileencoding=enc-jp
         endif
+
         " Detect UTF-8 locale, and replace CJK setting if needed
         if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
             set encoding=utf-8
@@ -200,68 +165,101 @@ set laststatus=2
         echoerr "Sorry, this version of (g)vim was not compiled with multi_byte"
     endif
 
-
-    " Use Unix as the standard file type
-    set ffs=unix,mac,dos
+    set ffs=unix,mac,dos          " Use Unix as the standard file type
 
     " 如遇Unicode值大于255的文本，不必等到空格再折行。
     set formatoptions+=m
+
     " 合并两行中文时，不在中间加空格：
     set formatoptions+=B
-" }
 
-"==========================================
-" others 其它配置
-"==========================================
-autocmd! bufwritepost _vimrc source % " vimrc文件修改之后自动加载。 windows。
-autocmd! bufwritepost .vimrc source % " vimrc文件修改之后自动加载。 linux。
+" ===  Buffer config ===========================================
+    " A buffer becomes hidden when it is abandoned
+    set hidden
+    " Automatically switch to the current file directory when a new buffer is opened
+    autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+    set ttyfast " ????
 
-" 自动补全配置
-"让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
-"set completeopt+=longest
-set completeopt=longest,menu
+" ===  Files, backups and undo   ================================
+    "Turn backup off, since most stuff is in SVN, Git etc.
+    set nobackup
+    set nowb
+    set noswapfile
+    if has('persistent_undo')
+        set undofile
+        set undolevels=1000
+        set undoreload=10000
+    endif
+    " set swap(.swp), backup(~), undo(.udf) directory to vim installation
+    " please make sure the directory exists otherwise current directory will
+    " be used
+    set undodir=~/k-vim/undo//,.
+    " turn off backup and swapfile, no need
+    "set backupdir=~/k-vim/backup//,.
+    "set directory=~/k-vim/swap//,.
 
-"离开插入模式后自动关闭预览窗口
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-"回车即选中当前项
-inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+" ===  Text, tab and indent related
+    set expandtab      " Use spaces instead of tabs
+    set smarttab       " Be smart when using tabs
+    set shiftwidth=4   " 1 tab == 4 spaces
+    set tabstop=4
+    set softtabstop=4  " Let backspace delete 4 spaces
+    set autoindent     " auto indent
+    set smartindent    " smart indent
 
-"上下左右键的行为 会显示其他信息
-inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+" ===  Other configs  =========================================
+    autocmd! bufwritepost _vimrc source % " vimrc文件修改之后自动加载。 windows。
+    autocmd! bufwritepost .vimrc source % " vimrc文件修改之后自动加载。 linux。
 
-" 增强模式中的命令行自动完成操作
-set wildmenu
-" Ignore compiled files
-set wildignore=*.o,*~,*.pyc,*.class
+    " For regular expressions turn magic on
+    set magic
 
-" Python 文件的一般设置，比如不要 tab 等
-autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
+" ===  自动补全配置  =========================================
+    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
+    set completeopt=longest,menu
+    set wildmenu       " Turn on the wild menu
+    " Show list instead of just completing
+    " Command <Tab> Completion, list matches, then longest common part, then all
+    set wildmode=list:longest,full
 
-" if this not work ,make sure .viminfo is writable for you
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
+    "离开插入模式后自动关闭预览窗口
+    autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+    "回车即选中当前项
+    inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
 
-" Delete trailing white space on save, useful for Python and CoffeeScript ;)
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
-endfunc
-autocmd BufWrite *.py :call DeleteTrailingWS()
+    "上下左右键的行为 会显示其他信息
+    inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+    inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+    inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+    inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
-" Remember info about open buffers on close"
-set viminfo^=%
 
-" For regular expressions turn magic on
-set magic
+    " Ignore compiled files
+    set wildignore=*.o,*~,*.pyc,*.class
+    if has("win16") || has("win32")
+        set wildignore+=*/.git*,*/.hg/*,*/.DS_Store
+    else
+        set wildignore+=.git\*,.hg\*
+    endif
 
-" Configure backspace so it acts as it should act
-set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
+    " if this not work ,make sure .viminfo is writable for you
+    if has("autocmd")
+      au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    endif
+
+    " Function: delete trailing white space
+    func! DeleteTrailingWS()
+      exe "normal mz"
+      %s/\s\+$//ge
+      exe "normal `z"
+    endfunc
+    autocmd BufWrite *.py :call DeleteTrailingWS()      " Remove trailing white space before save
+    autocmd BufWrite *.coffee :call DeleteTrailingWS()  " Remove trailing white space before save
+
+    " Remember info about open buffers on close"
+    set viminfo^=%
+
+
 
 "==========================================
 "hot key  自定义快捷键
@@ -278,13 +276,17 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 "map <Down> <Nop>
 
 "Treat long lines as break lines (useful when moving around in them)
-"set swap之后，同物理行上线直接跳
 map j gj
 map k gk
+" Go to home and end using capitalized directions
+noremap H 0
+noremap L $
+" Remap VIM 0 to first non-blank character
+map 0 ^
 
-" better command line editing
-cnoremap <C-j> <t_kd>
-cnoremap <C-k> <t_ku>
+" better command line editing (bash style)
+cnoremap <C-f> <Right>
+cnoremap <C-b> <Left>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
@@ -294,24 +296,18 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-" Go to home and end using capitalized directions
-noremap H 0
-noremap L $
-" Remap VIM 0 to first non-blank character
-map 0 ^
+" copy from cursor to end
 map Y y$
-" Speed up scrolling of the viewport slightly
-nnoremap <C-e> 2<C-e>
-nnoremap <C-y> 2<C-y>
 
-nnoremap <F2> :set wrap! wrap?<CR>
+" Speed up scrolling of the viewport slightly
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+
 "set paste when in insert mode, press <F12> to go to paste mode where you can
 "paste mass data that won't be autoindented
 set pastetoggle=<F12>
 " disbale paste mode when leaving insert mode
 au InsertLeave * set nopaste
-
-" nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
 
 
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
@@ -388,9 +384,7 @@ map <leader>tm :tabmove
 " Super useful when editing files in the same directory
 map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 
-"==========================================
 " bundle 插件管理和配置项
-"==========================================
 "========================== config for plugins begin ======================================
 
 " 0-bundle the plugins
@@ -686,6 +680,13 @@ filetype plugin indent on
 syntax enable
 syntax on
 
+" scheme and colors
+set background=dark
+set t_Co=256
+
+colorscheme solarized
+"colorscheme desert
+"
 " Set extra options when running in GUI mode
 if has("gui_running")
     set guifont=Monaco:h14
@@ -698,16 +699,10 @@ if has("gui_running")
     set linespace=2
     set noimd
     set t_Co=256
+    colorscheme molokai
 endif
 
 
-" 修改主题和颜色展示
-colorscheme solarized
-set background=dark
-set t_Co=256
-
-"colorscheme molokai
-"colorscheme desert
 
 "设置标记一列的背景颜色和数字一行颜色一致
 hi! link SignColumn   LineNr
