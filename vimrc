@@ -616,20 +616,7 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 "map <leader><space> :FixWhitespace<cr>
 "
 "
-"主题 solarized
-"Bundle 'altercation/vim-colors-solarized'
-""let g:solarized_termcolors=256
-"let g:solarized_termtrans=1
-"let g:solarized_contrast="normal"
-"let g:solarized_visibility="normal"
 "
-"
-""################### 快速移动 ###################"
-"
-""更高效的移动 ,, + w/fx
-"Bundle 'Lokaltog/vim-easymotion'
-"
-"Bundle 'vim-scripts/matchit.zip'
 "
 ""################### 补全及快速编辑 ###################"
 "
@@ -736,51 +723,51 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 "Bundle 'vim-scripts/TaskList.vim'
 "map <leader>td <Plug>TaskList
 "
-"" for git 尚未用起来
-"Bundle 'tpope/vim-fugitive'
-"
 ""edit history, 可以查看回到某个历史状态
 "Bundle 'sjl/gundo.vim'
 "nnoremap <leader>h :GundoToggle<CR>
-"
-"" end turn on
-"filetype plugin indent on
 
 "========================== config for plugins end ======================================
 
-"==========================================
-" 主题,及一些展示上颜色的修改
-"==========================================
-"开启语法高亮
-syntax enable
-syntax on
-
-" scheme and colors
-set background=dark
-set t_Co=256
-
-colorscheme solarized
-"colorscheme desert
-"
-" Set extra options when running in GUI mode
-if has("gui_running")
-    set guifont=Monaco:h14
-    set guioptions-=T
-    set guioptions+=e
-    set guioptions-=r
-    set guioptions-=L
-    set guitablabel=%M\ %t
-    set showtabline=1
-    set linespace=2
-    set noimd
+" ===  GUI, scheme, color  =======================================
+    syntax enable
+    syntax on
+    " scheme and colors
+    set background=dark
     set t_Co=256
-    colorscheme molokai
-endif
-""主题 molokai
-Bundle 'tomasr/molokai'
-let g:molokai_original = 1
+    colorscheme solarized
+    "colorscheme desert
 
+    " solarized scheme setting
+    let g:solorized_termcolors=256
+    let g:solarized_termtrans=1
+    let g:solarized_contrast="normal"
+    let g:solarized_visibility="normal"
 
+    " Set font according to system
+    if has("mac") || has("macunix")
+        "set guifont=inconsolata:h16
+        set guifont=monaco:h13
+    elseif has("win16") || has("win32")
+        set guifont=Bitstream\ Vera\ Sans\ Mono:h11
+    elseif has("linux")
+        set guifont=Monospace\ 11
+    endif
+
+    " Set extra options when running in GUI mode
+    if has("gui_running")
+        set guifont=Monaco:h14
+        set guioptions-=T
+        set guioptions-=e
+        "set guioptions-=r
+        "set guioptions-=L
+        set guitablabel=%M\ %t
+        set showtabline=1
+        set linespace=2
+        set noimd
+        colorscheme molokai
+        let g:molokai_original = 1
+    endif
 
 "设置标记一列的背景颜色和数字一行颜色一致
 hi! link SignColumn   LineNr
