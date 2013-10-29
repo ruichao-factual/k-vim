@@ -32,6 +32,7 @@
             " Bundle 'Lokaltog/powerline'
             Bundle 'Lokaltog/vim-powerline'
             Bundle 'tomasr/molokai'
+            Bundle 'kien/rainbow_parentheses.vim'
             ""let g:molokai_original = 1
             Bundle 'spf13/vim-autoclose'
             Bundle 'tpope/vim-surround'
@@ -43,6 +44,8 @@
             Bundle 'terryma/vim-multiple-cursors'
             Bundle 'vim-scripts/sessionman.vim'
             Bundle 'matchit.zip'
+            Bundle 'Yggdroot/indentLine'
+            Bundle 'bronson/vim-trailing-whitespace'
             " unknow function csapprox
             Bundle 'godlygeek/csapprox'
             Bundle 'jistr/vim-nerdtree-tabs'
@@ -565,14 +568,12 @@ let g:ctrlp_follow_symlinks=1
 "################### 显示增强 ###################"
 
 "状态栏增强展示
-Bundle 'Lokaltog/vim-powerline'
 "if want to use fancy,need to add font patch -> git clone git://gist.github.com/1630581.git ~/.fonts/ttf-dejavu-powerline
-"let g:Powerline_symbols = 'fancy'
+let g:Powerline_symbols = 'fancy'
 let g:Powerline_symbols = 'unicode'
 
 
-"括号显示增强
-Bundle 'kien/rainbow_parentheses.vim'
+"===  kien/rainbow_parentheses.vim  ==========================================
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
     \ ['Darkblue',    'SeaGreen3'],
@@ -595,13 +596,13 @@ let g:rbpt_max = 40
 let g:rbpt_loadcmd_toggle = 0
 
 "代码排版缩进标识
-Bundle 'Yggdroot/indentLine'
-let g:indentLine_noConcealCursor = 1
-let g:indentLine_color_term = 0
-let g:indentLine_char = '¦'
+" ===  Yggdroot/indentLine  ==================================================
+    let g:indentLine_noConcealCursor = 1
+    let g:indentLine_color_term = 0
+    let g:indentLine_char = '¦'
 
 "for show no user whitespaces
-Bundle 'bronson/vim-trailing-whitespace'
+" ===  bronson/vim-trailing-whitespace  =====================================
 map <leader><space> :FixWhitespace<cr>
 
 
