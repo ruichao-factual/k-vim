@@ -12,6 +12,94 @@
 "     ->bundle 插件管理和配置项
 "     ->colortheme 主题,及一些展示上颜色的修改
 "==========================================
+" ===  Use Vundle to manage plugin  ============================
+" => Vundle
+    set nocompatible
+    filetype off   "required!
+    set rtp+=~/.vim/bundle/vundle/
+    call vundle#rc()
+    " let Vundle manage Vundle
+    " required
+    Bundle 'gmarik/vundle'
+
+    "  My Bundles here {
+        " original repos on github
+        " Bundle 'tpope/vim-fugitive'
+        " General
+            Bundle 'altercation/vim-colors-solarized'
+            Bundle 'spf13/vim-colors'
+            Bundle 'bling/vim-airline'
+            " Bundle 'Lokaltog/powerline'
+            " Bundle 'Lokaltog/vim-powerline'
+            ""主题 molokai
+            Bundle 'tomasr/molokai'
+            ""let g:molokai_original = 1
+            Bundle 'spf13/vim-autoclose'
+            Bundle 'tpope/vim-surround'
+            Bundle 'tpope/vim-repeat'
+            Bundle 'scrooloose/nerdtree'
+            Bundle 'kien/ctrlp.vim'
+            Bundle 'Lokaltog/vim-easymotion'
+            Bundle 'terryma/vim-multiple-cursors'
+            Bundle 'vim-scripts/sessionman.vim'
+            Bundle 'matchit.zip'
+            " unknow function csapprox
+            Bundle 'godlygeek/csapprox'
+            Bundle 'jistr/vim-nerdtree-tabs'
+            Bundle 'flazz/vim-colorschemes'
+            Bundle 'mbbill/undotree'
+            Bundle 'myusuf3/numbers.vim'
+            Bundle 'nathanaelkane/vim-indent-guides'
+            Bundle 'tpope/vim-abolish.git'
+            Bundle 'airblade/vim-gitgutter'
+            Bundle 'kien/rainbow_parentheses.vim'
+            Bundle 'Yggdroot/indentLine'
+            Bundle 'fholgado/minibufexpl.vim'
+        " General Programming
+            " Pick one of the checksyntax, jslint, or syntastic
+            Bundle 'scrooloose/syntastic'
+            Bundle 'tpope/vim-fugitive'
+            " Bundle 'mattn/webapi-vim'
+            Bundle 'mattn/gist-vim'
+            Bundle 'scrooloose/nerdcommenter'
+            Bundle 'godlygeek/tabular'
+            if executable('ctags')
+                Bundle 'majutsushi/tagbar'
+            endif
+        " Snippets & AutoComplete
+            Bundle 'Shougo/neocomplcache'
+            Bundle 'Shougo/neosnippet'
+            Bundle 'honza/vim-snippets'
+        " Html
+            Bundle 'amirh/HTML-AutoCloseTag'
+            Bundle 'hail2u/vim-css3-syntax'
+            Bundle 'tpope/vim-haml'
+        " Ruby
+            Bundle 'tpope/vim-rails'
+        " Python
+            Bundle 'nvie/vim-flake8'
+            Bundle 'python.vim'
+            Bundle 'python_match.vim'
+            Bundle 'pythoncomplete'
+        " Java
+            Bundle 'derekwyatt/vim-scala'
+            Bundle 'derekwyatt/vim-sbt'
+        " Javascript
+            Bundle 'elzr/vim-json'
+            Bundle 'groenewege/vim-less'
+            Bundle 'briancollins/vim-jst'
+            Bundle 'kchmck/vim-coffee-script'
+        " NodeJs
+            Bundle 'moll/vim-node'
+        Bundle 'ervandew/supertab'
+        " Vim-scripts repos
+        " Bundle 'L9'
+        " non github repos
+        "Bundle 'git://git.wincent.com/command-t.git'
+    " }
+
+    filetype on "required!
+    filetype indent on "required!
 
 " ===  General config  =========================================
     " set how many lines of history VIM has to remember
@@ -133,7 +221,6 @@ set selectmode=mouse,key
         else
             set fileencodings=cp936,big5,euc-jp,euc-kr,latain1
         endif
-
         "CJK environment detection and corresponding setting
         if v:lang =~ "^zh_CN"
             "Use cp936 to support GBK, euc-cn == gb2312
@@ -391,22 +478,15 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 "package dependent:  ctags
 "python dependent:  pep8, pyflake
 
-filetype off " required! turn off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
 "################### 插件管理 ###################"
 
 "使用Vundle来管理Vundle
-Bundle 'gmarik/vundle'
 " vim plugin bundle control, command model
 " :BundleInstall     install
 " :BundleInstall!    update
 " :BundleClean       remove plugin not in list
 
-"################### 导航 ###################"
-"目录导航
-    Bundle 'scrooloose/nerdtree'
+" ===  NERDTree ==============================================================
     map <leader>n :NERDTreeToggle<CR>:NERDTreeMirror<CR>
     map <leader>e :NERDTreeFind<CR>
     let NERDTreeShowBookmarks=1
@@ -422,254 +502,249 @@ Bundle 'gmarik/vundle'
     "close vim if the only window left open is a NERDTree
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
 
-" => Numbers.vim
-    Bundle 'myusuf3/numbers.vim'
+" ===   Numbers.vim  =========================================================
     nnoremap <F4> :NumbersToggle<CR>
     nnoremap <F3> :set nonumber!<CR>
 
-"for minibufferexpl
-Bundle 'fholgado/minibufexpl.vim'
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
-"解决FileExplorer窗口变小问题
-let g:miniBufExplForceSyntaxEnable = 1
-let g:miniBufExplorerMoreThanOne=2
-let g:miniBufExplCycleArround=1
-
-" 默认方向键左右可以切换buffer
-nnoremap <TAB> :MBEbn<CR>
-noremap <leader>bn :MBEbn<CR>
-noremap <leader>bp :MBEbp<CR>
-noremap <leader>bd :MBEbd<CR>
-
-"标签导航
-Bundle 'majutsushi/tagbar'
-nmap <F9> :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
-
-"标签导航 要装ctags
-Bundle 'vim-scripts/taglist.vim'
-set tags=tags;/
-let Tlist_Ctags_Cmd="/usr/bin/ctags"
-nnoremap <silent> <F8> :TlistToggle<CR>
-let Tlist_Auto_Highlight_Tag = 1
-let Tlist_Auto_Open = 0
-let Tlist_Auto_Update = 1
-let Tlist_Close_On_Select = 0
-let Tlist_Compact_Format = 0
-let Tlist_Display_Prototype = 0
-let Tlist_Display_Tag_Scope = 1
-let Tlist_Enable_Fold_Column = 0
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_File_Fold_Auto_Close = 0
-let Tlist_GainFocus_On_ToggleOpen = 1
-let Tlist_Hightlight_Tag_On_BufEnter = 1
-let Tlist_Inc_Winwidth = 0
-let Tlist_Max_Submenu_Items = 1
-let Tlist_Max_Tag_Length = 30
-let Tlist_Process_File_Always = 0
-let Tlist_Show_Menu = 0
-let Tlist_Show_One_File = 1
-let Tlist_Sort_Type = "order"
-let Tlist_Use_Horiz_Window = 0
-let Tlist_Use_Right_Window = 0
-let Tlist_WinWidth = 25
-
-"for file search ctrlp, 文件搜索
-Bundle 'kien/ctrlp.vim'
-let g:ctrlp_map = '<leader>p'
-let g:ctrlp_cmd = 'CtrlP'
-map <leader>f :CtrlPMRU<CR>
-"set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux"
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
-    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz)$',
-    \ }
-"\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
-let g:ctrlp_working_path_mode=0
-let g:ctrlp_match_window_bottom=1
-let g:ctrlp_max_height=15
-let g:ctrlp_match_window_reversed=0
-let g:ctrlp_mruf_max=500
-let g:ctrlp_follow_symlinks=1
-
-"################### 显示增强 ###################"
-
-"状态栏增强展示
-Bundle 'Lokaltog/vim-powerline'
-"if want to use fancy,need to add font patch -> git clone git://gist.github.com/1630581.git ~/.fonts/ttf-dejavu-powerline
-"let g:Powerline_symbols = 'fancy'
-let g:Powerline_symbols = 'unicode'
-
-
-"括号显示增强
-Bundle 'kien/rainbow_parentheses.vim'
-let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['black',       'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
-    \ ]
-let g:rbpt_max = 40
-let g:rbpt_loadcmd_toggle = 0
-
-"代码排版缩进标识
-Bundle 'Yggdroot/indentLine'
-let g:indentLine_noConcealCursor = 1
-let g:indentLine_color_term = 0
-let g:indentLine_char = '¦'
-
-"for show no user whitespaces
-Bundle 'bronson/vim-trailing-whitespace'
-map <leader><space> :FixWhitespace<cr>
-
-
+""for minibufferexpl
+"let g:miniBufExplMapWindowNavVim = 1
+"let g:miniBufExplMapWindowNavArrows = 1
+"let g:miniBufExplMapCTabSwitchBufs = 1
+"let g:miniBufExplModSelTarget = 1
+""解决FileExplorer窗口变小问题
+"let g:miniBufExplForceSyntaxEnable = 1
+"let g:miniBufExplorerMoreThanOne=2
+"let g:miniBufExplCycleArround=1
+"
+"" 默认方向键左右可以切换buffer
+"nnoremap <TAB> :MBEbn<CR>
+"noremap <leader>bn :MBEbn<CR>
+"noremap <leader>bp :MBEbp<CR>
+"noremap <leader>bd :MBEbd<CR>
+"
+""标签导航
+"Bundle 'majutsushi/tagbar'
+"nmap <F9> :TagbarToggle<CR>
+"let g:tagbar_autofocus = 1
+"
+""标签导航 要装ctags
+"Bundle 'vim-scripts/taglist.vim'
+"set tags=tags;/
+"let Tlist_Ctags_Cmd="/usr/bin/ctags"
+"nnoremap <silent> <F8> :TlistToggle<CR>
+"let Tlist_Auto_Highlight_Tag = 1
+"let Tlist_Auto_Open = 0
+"let Tlist_Auto_Update = 1
+"let Tlist_Close_On_Select = 0
+"let Tlist_Compact_Format = 0
+"let Tlist_Display_Prototype = 0
+"let Tlist_Display_Tag_Scope = 1
+"let Tlist_Enable_Fold_Column = 0
+"let Tlist_Exit_OnlyWindow = 1
+"let Tlist_File_Fold_Auto_Close = 0
+"let Tlist_GainFocus_On_ToggleOpen = 1
+"let Tlist_Hightlight_Tag_On_BufEnter = 1
+"let Tlist_Inc_Winwidth = 0
+"let Tlist_Max_Submenu_Items = 1
+"let Tlist_Max_Tag_Length = 30
+"let Tlist_Process_File_Always = 0
+"let Tlist_Show_Menu = 0
+"let Tlist_Show_One_File = 1
+"let Tlist_Sort_Type = "order"
+"let Tlist_Use_Horiz_Window = 0
+"let Tlist_Use_Right_Window = 0
+"let Tlist_WinWidth = 25
+"
+""for file search ctrlp, 文件搜索
+"Bundle 'kien/ctrlp.vim'
+"let g:ctrlp_map = '<leader>p'
+"let g:ctrlp_cmd = 'CtrlP'
+"map <leader>f :CtrlPMRU<CR>
+""set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux"
+"let g:ctrlp_custom_ignore = {
+"    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+"    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz)$',
+"    \ }
+""\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+"let g:ctrlp_working_path_mode=0
+"let g:ctrlp_match_window_bottom=1
+"let g:ctrlp_max_height=15
+"let g:ctrlp_match_window_reversed=0
+"let g:ctrlp_mruf_max=500
+"let g:ctrlp_follow_symlinks=1
+"
+""################### 显示增强 ###################"
+"
+""状态栏增强展示
+"Bundle 'Lokaltog/vim-powerline'
+""if want to use fancy,need to add font patch -> git clone git://gist.github.com/1630581.git ~/.fonts/ttf-dejavu-powerline
+""let g:Powerline_symbols = 'fancy'
+"let g:Powerline_symbols = 'unicode'
+"
+"
+""括号显示增强
+"Bundle 'kien/rainbow_parentheses.vim'
+"let g:rbpt_colorpairs = [
+"    \ ['brown',       'RoyalBlue3'],
+"    \ ['Darkblue',    'SeaGreen3'],
+"    \ ['darkgray',    'DarkOrchid3'],
+"    \ ['darkgreen',   'firebrick3'],
+"    \ ['darkcyan',    'RoyalBlue3'],
+"    \ ['darkred',     'SeaGreen3'],
+"    \ ['darkmagenta', 'DarkOrchid3'],
+"    \ ['brown',       'firebrick3'],
+"    \ ['gray',        'RoyalBlue3'],
+"    \ ['black',       'SeaGreen3'],
+"    \ ['darkmagenta', 'DarkOrchid3'],
+"    \ ['Darkblue',    'firebrick3'],
+"    \ ['darkgreen',   'RoyalBlue3'],
+"    \ ['darkcyan',    'SeaGreen3'],
+"    \ ['darkred',     'DarkOrchid3'],
+"    \ ['red',         'firebrick3'],
+"    \ ]
+"let g:rbpt_max = 40
+"let g:rbpt_loadcmd_toggle = 0
+"
+""代码排版缩进标识
+"Bundle 'Yggdroot/indentLine'
+"let g:indentLine_noConcealCursor = 1
+"let g:indentLine_color_term = 0
+"let g:indentLine_char = '¦'
+"
+""for show no user whitespaces
+"Bundle 'bronson/vim-trailing-whitespace'
+"map <leader><space> :FixWhitespace<cr>
+"
+"
 "主题 solarized
-Bundle 'altercation/vim-colors-solarized'
-"let g:solarized_termcolors=256
-let g:solarized_termtrans=1
-let g:solarized_contrast="normal"
-let g:solarized_visibility="normal"
-
-"主题 molokai
-Bundle 'tomasr/molokai'
-"let g:molokai_original = 1
-
-"################### 快速移动 ###################"
-
-"更高效的移动 ,, + w/fx
-Bundle 'Lokaltog/vim-easymotion'
-
-Bundle 'vim-scripts/matchit.zip'
-
-"################### 补全及快速编辑 ###################"
-
-"迄今为止用到的最好的自动VIM自动补全插件
-Bundle 'Valloric/YouCompleteMe'
-"youcompleteme  默认tab  s-tab 和自动补全冲突
-"let g:ycm_key_list_select_completion=['<c-n>']
-let g:ycm_key_list_select_completion = ['<Down>']
-"let g:ycm_key_list_previous_completion=['<c-p>']
-let g:ycm_key_list_previous_completion = ['<Up>']
-
-
-"快速插入代码片段
-"Bundle 'vim-scripts/UltiSnips'
-Bundle 'SirVer/ultisnips'
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-"定义存放代码片段的文件夹 .vim/snippets下，使用自定义和默认的，将会的到全局，有冲突的会提示
-let g:UltiSnipsSnippetDirectories=["snippets", "bundle/UltiSnips/UltiSnips"]
-
-"快速 加减注释
-Bundle 'scrooloose/nerdcommenter'
-
-" 快速加入修改环绕字符
-Bundle 'tpope/vim-surround'
-"for repeat -> enhance surround.vim, . to repeat command
-Bundle 'tpope/vim-repeat'
-
-"自动补全单引号，双引号等
-Bundle 'Raimondi/delimitMate'
-" for python docstring ",优化输入
-au FileType python let b:delimitMate_nesting_quotes = ['"']
-
-"for code alignment
-Bundle 'godlygeek/tabular'
-nmap <Leader>a= :Tabularize /=<CR>
-vmap <Leader>a= :Tabularize /=<CR>
-nmap <Leader>a: :Tabularize /:\zs<CR>
-vmap <Leader>a: :Tabularize /:\zs<CR>
-
-"for visual selection
-Bundle 'terryma/vim-expand-region'
-map = <Plug>(expand_region_expand)
-map - <Plug>(expand_region_shrink)
-
-"for mutil cursor
-Bundle 'terryma/vim-multiple-cursors'
-let g:multi_cursor_use_default_mapping=0
-" Default mapping
-let g:multi_cursor_next_key='<C-m>'
-let g:multi_cursor_prev_key='<C-p>'
-let g:multi_cursor_skip_key='<C-x>'
-let g:multi_cursor_quit_key='<Esc>'
-
-
-"################# 语法检查 ###############
-
-" 编辑时自动语法检查标红, vim-flake8目前还不支持,所以多装一个
-" 使用pyflakes,速度比pylint快
-Bundle 'scrooloose/syntastic'
-let g:syntastic_error_symbol='>>'
-let g:syntastic_warning_symbol='>'
-let g:syntastic_check_on_open=1
-let g:syntastic_enable_highlighting = 0
-"let g:syntastic_python_checker="flake8,pyflakes,pep8,pylint"
-let g:syntastic_python_checkers=['pyflakes']
-highlight SyntasticErrorSign guifg=white guibg=black
-
-" python fly check, 弥补syntastic只能打开和保存才检查语法的不足
-Bundle 'kevinw/pyflakes-vim'
-let g:pyflakes_use_quickfix = 0
-
-
-"################# 具体语言语法高亮 ###############
-
-" for python.vim syntax highlight
-Bundle 'hdima/python-syntax'
-let python_highlight_all = 1
-
-" for golang
-Bundle 'jnwhiteh/vim-golang'
-
-" for markdown
-Bundle 'plasticboy/vim-markdown'
-let g:vim_markdown_folding_disabled=1
-
-" for javascript
-Bundle "pangloss/vim-javascript"
-let g:html_indent_inctags = "html,body,head,tbody"
-let g:html_indent_script1 = "inc"
-let g:html_indent_style1 = "inc"
-
-"for jquery
-Bundle 'nono/jquery.vim'
-
-"for jinja2 highlight
-Bundle 'Glench/Vim-Jinja2-Syntax'
-
-"for nginx conf file highlight.   need to confirm it works
-Bundle 'thiderman/nginx-vim-syntax'
-
-"################### 其他 ###################"
-" task list
-Bundle 'vim-scripts/TaskList.vim'
-map <leader>td <Plug>TaskList
-
-" for git 尚未用起来
-Bundle 'tpope/vim-fugitive'
-
-"edit history, 可以查看回到某个历史状态
-Bundle 'sjl/gundo.vim'
-nnoremap <leader>h :GundoToggle<CR>
-
-" end turn on
-filetype plugin indent on
+"Bundle 'altercation/vim-colors-solarized'
+""let g:solarized_termcolors=256
+"let g:solarized_termtrans=1
+"let g:solarized_contrast="normal"
+"let g:solarized_visibility="normal"
+"
+"
+""################### 快速移动 ###################"
+"
+""更高效的移动 ,, + w/fx
+"Bundle 'Lokaltog/vim-easymotion'
+"
+"Bundle 'vim-scripts/matchit.zip'
+"
+""################### 补全及快速编辑 ###################"
+"
+""迄今为止用到的最好的自动VIM自动补全插件
+"Bundle 'Valloric/YouCompleteMe'
+""youcompleteme  默认tab  s-tab 和自动补全冲突
+""let g:ycm_key_list_select_completion=['<c-n>']
+"let g:ycm_key_list_select_completion = ['<Down>']
+""let g:ycm_key_list_previous_completion=['<c-p>']
+"let g:ycm_key_list_previous_completion = ['<Up>']
+"
+"
+""快速插入代码片段
+""Bundle 'vim-scripts/UltiSnips'
+"Bundle 'SirVer/ultisnips'
+"let g:UltiSnipsExpandTrigger = "<tab>"
+"let g:UltiSnipsJumpForwardTrigger = "<tab>"
+""定义存放代码片段的文件夹 .vim/snippets下，使用自定义和默认的，将会的到全局，有冲突的会提示
+"let g:UltiSnipsSnippetDirectories=["snippets", "bundle/UltiSnips/UltiSnips"]
+"
+""快速 加减注释
+"Bundle 'scrooloose/nerdcommenter'
+"
+"" 快速加入修改环绕字符
+"Bundle 'tpope/vim-surround'
+""for repeat -> enhance surround.vim, . to repeat command
+"Bundle 'tpope/vim-repeat'
+"
+""自动补全单引号，双引号等
+"Bundle 'Raimondi/delimitMate'
+"" for python docstring ",优化输入
+"au FileType python let b:delimitMate_nesting_quotes = ['"']
+"
+""for code alignment
+"Bundle 'godlygeek/tabular'
+"nmap <Leader>a= :Tabularize /=<CR>
+"vmap <Leader>a= :Tabularize /=<CR>
+"nmap <Leader>a: :Tabularize /:\zs<CR>
+"vmap <Leader>a: :Tabularize /:\zs<CR>
+"
+""for visual selection
+"Bundle 'terryma/vim-expand-region'
+"map = <Plug>(expand_region_expand)
+"map - <Plug>(expand_region_shrink)
+"
+""for mutil cursor
+"Bundle 'terryma/vim-multiple-cursors'
+"let g:multi_cursor_use_default_mapping=0
+"" Default mapping
+"let g:multi_cursor_next_key='<C-m>'
+"let g:multi_cursor_prev_key='<C-p>'
+"let g:multi_cursor_skip_key='<C-x>'
+"let g:multi_cursor_quit_key='<Esc>'
+"
+"
+""################# 语法检查 ###############
+"
+"" 编辑时自动语法检查标红, vim-flake8目前还不支持,所以多装一个
+"" 使用pyflakes,速度比pylint快
+"Bundle 'scrooloose/syntastic'
+"let g:syntastic_error_symbol='>>'
+"let g:syntastic_warning_symbol='>'
+"let g:syntastic_check_on_open=1
+"let g:syntastic_enable_highlighting = 0
+""let g:syntastic_python_checker="flake8,pyflakes,pep8,pylint"
+"let g:syntastic_python_checkers=['pyflakes']
+"highlight SyntasticErrorSign guifg=white guibg=black
+"
+"" python fly check, 弥补syntastic只能打开和保存才检查语法的不足
+"Bundle 'kevinw/pyflakes-vim'
+"let g:pyflakes_use_quickfix = 0
+"
+"
+""################# 具体语言语法高亮 ###############
+"
+"" for python.vim syntax highlight
+"Bundle 'hdima/python-syntax'
+"let python_highlight_all = 1
+"
+"" for golang
+"Bundle 'jnwhiteh/vim-golang'
+"
+"" for markdown
+"Bundle 'plasticboy/vim-markdown'
+"let g:vim_markdown_folding_disabled=1
+"
+"" for javascript
+"Bundle "pangloss/vim-javascript"
+"let g:html_indent_inctags = "html,body,head,tbody"
+"let g:html_indent_script1 = "inc"
+"let g:html_indent_style1 = "inc"
+"
+""for jquery
+"Bundle 'nono/jquery.vim'
+"
+""for jinja2 highlight
+"Bundle 'Glench/Vim-Jinja2-Syntax'
+"
+""for nginx conf file highlight.   need to confirm it works
+"Bundle 'thiderman/nginx-vim-syntax'
+"
+""################### 其他 ###################"
+"" task list
+"Bundle 'vim-scripts/TaskList.vim'
+"map <leader>td <Plug>TaskList
+"
+"" for git 尚未用起来
+"Bundle 'tpope/vim-fugitive'
+"
+""edit history, 可以查看回到某个历史状态
+"Bundle 'sjl/gundo.vim'
+"nnoremap <leader>h :GundoToggle<CR>
+"
+"" end turn on
+"filetype plugin indent on
 
 "========================== config for plugins end ======================================
 
@@ -701,6 +776,9 @@ if has("gui_running")
     set t_Co=256
     colorscheme molokai
 endif
+""主题 molokai
+Bundle 'tomasr/molokai'
+let g:molokai_original = 1
 
 
 
