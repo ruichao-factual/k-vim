@@ -14,6 +14,9 @@
 "==========================================
 " ===  Use Vundle to manage plugin  ============================
 " => Vundle
+    " :BundleInstall     install
+    " :BundleInstall!    update
+    " :BundleClean       remove plugin not in list
     set nocompatible
     filetype off   "required!
     set rtp+=~/.vim/bundle/vundle/
@@ -44,7 +47,6 @@
             Bundle 'terryma/vim-multiple-cursors'
             Bundle 'vim-scripts/sessionman.vim'
             Bundle 'matchit.zip'
-            Bundle 'Yggdroot/indentLine'
             Bundle 'bronson/vim-trailing-whitespace'
             " unknow function csapprox
             Bundle 'godlygeek/csapprox'
@@ -119,7 +121,7 @@
     let g:mapleader=","
 
     " timespan for a combine key command
-    set timeoutlen=1000
+    set timeoutlen=2000
 
 " === VIM user interface ========================================
     " Set 7 lines to the cursor - when moving vertically using j/k
@@ -178,6 +180,7 @@ set selectmode=mouse,key
     set ignorecase     " Ignore case
     set incsearch      " Show search result while typing
     set hlsearch       " Highlight search content
+    set smartcase      " Smart about case when search
     set cursorcolumn   " Highlight current line
     set cursorline     " Highlight current column
     set showcmd        " Show command in status line
@@ -468,13 +471,6 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 "package dependent:  ctags
 "python dependent:  pep8, pyflake
 
-"################### 插件管理 ###################"
-
-"使用Vundle来管理Vundle
-" vim plugin bundle control, command model
-" :BundleInstall     install
-" :BundleInstall!    update
-" :BundleClean       remove plugin not in list
 
 " ===  NERDTree ==============================================================
     map <leader>n :NERDTreeToggle<CR>:NERDTreeMirror<CR>
@@ -515,7 +511,7 @@ noremap <leader>bp :MBEbp<CR>
 noremap <leader>bd :MBEbd<CR>
 
 "标签导航
-Bundle 'majutsushi/tagbar'
+" === Tagbar  ================================================================
 nmap <F9> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 
@@ -548,7 +544,7 @@ let Tlist_Use_Right_Window = 0
 let Tlist_WinWidth = 25
 
 "for file search ctrlp, 文件搜索
-Bundle 'kien/ctrlp.vim'
+" Bundle 'kien/ctrlp.vim'
 let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
 map <leader>f :CtrlPMRU<CR>
@@ -722,16 +718,6 @@ nnoremap <leader>h :GundoToggle<CR>
 " ===  GUI, scheme, color  =======================================
     syntax enable
     syntax on
-    " scheme and colors
-    " solarized scheme setting
-    let g:solorized_termcolors=256
-    let g:solarized_termtrans=1
-    let g:solarized_contrast="normal"
-    let g:solarized_visibility="normal"
-    colorscheme solarized
-    set background=dark
-    "colorscheme desert
-
     " Set font according to system
     if has("mac") || has("macunix")
         "set guifont=inconsolata:h16
@@ -743,18 +729,26 @@ nnoremap <leader>h :GundoToggle<CR>
     endif
 
     " Set extra options when running in GUI mode
+    " scheme and colors
     if has("gui_running")
         set guifont=Monaco:h14
         set guioptions-=T
         set guioptions-=e
-        "set guioptions-=r
-        "set guioptions-=L
+        set guioptions-=r
+        set guioptions-=L
         set guitablabel=%M\ %t
         set showtabline=1
         set linespace=2
         set noimd
         colorscheme molokai
-        let g:molokai_original = 1
+        "let g:molokai_original = 1
+    else
+        let g:solorized_termcolors=256
+        let g:solarized_termtrans=1
+        let g:solarized_contrast="high"
+        let g:solarized_visibility="normal"
+        set background=dark
+        colorscheme solarized
     endif
 
 "设置标记一列的背景颜色和数字一行颜色一致
