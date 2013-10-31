@@ -420,6 +420,19 @@
 
     " select all
     map <Leader>sa ggVG"
+    " Map <Leader>ff to display all lines with keyword under cursor
+    " and ask which one to jump to
+    nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+
+    " Find merge conflict markers
+    map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
+
+    " Visual shifting (does not exit Visual mode)
+    vnoremap < <gv
+    vnoremap > >gv
+
+    " Adjust viewports to the same size
+    map <Leader>= <C-w>=
 
     " automatically reload vimrc when it's saved
     au BufWritePost .vimrc so ~/.vimrc
@@ -570,10 +583,13 @@ let g:Powerline_symbols = 'unicode'
     let g:indentLine_color_term = 0
     let g:indentLine_char = '¦'
 
-" ===  bronson/vim-trailing-whitespace  =====================================
+" ===  bronson/vim-trailing-whitespace  ======================================
     map <leader><space> :FixWhitespace<cr>
 
-
+" ===  UndoTree  =============================================================
+    nnoremap <leader>u :UndotreeToggle<CR>
+    " If undotree is opened, it is likely one wants to interact with it
+    let g:undotree_SetFocusWhenToggle=1
 
 "迄今为止用到的最好的自动VIM自动补全插件
 " ===  Bundle 'Valloric/YouCompleteMe'  ======================================
@@ -693,6 +709,7 @@ map <leader>td <Plug>TaskList
         set linespace=2
         set noimd
         colorscheme molokai
+        "colorscheme solarized
         "let g:molokai_original = 1
     else
         let g:solorized_termcolors=256
@@ -700,7 +717,8 @@ map <leader>td <Plug>TaskList
         let g:solarized_contrast="high"
         let g:solarized_visibility="normal"
         set background=dark
-        colorscheme solarized
+        colorscheme molokai
+        "colorscheme solarized
     endif
 
 "设置标记一列的背景颜色和数字一行颜色一致
