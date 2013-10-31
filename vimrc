@@ -13,7 +13,6 @@
 "     ->colortheme 主题,及一些展示上颜色的修改
 "==========================================
 " ===  Use Vundle to manage plugin  ============================
-" => Vundle
     " :BundleInstall     install
     " :BundleInstall!    update
     " :BundleClean       remove plugin not in list
@@ -125,6 +124,12 @@
     set backspace=eol,start,indent
     set whichwrap+=b,s,h,l,[,],<,>
 
+    if has ('x') && has ('gui') " On Linux use + register for copy-paste
+        set clipboard=unnamedplus
+    elseif has ('gui')          " On mac and Windows, use * register for copy-paste
+        set clipboard=unnamed
+    endif
+    set go+=a
     "- 则点击光标不会换,用于复制
     " 修复ctrl+m 多光标操作选择的bug，但是改变了ctrl+v进行字符选中时将包含光标下的字符
     "set selection=exclusive
@@ -708,17 +713,18 @@ map <leader>td <Plug>TaskList
         set showtabline=1
         set linespace=2
         set noimd
-        colorscheme molokai
-        "colorscheme solarized
+        "colorscheme molokai
+        colorscheme solarized
         "let g:molokai_original = 1
     else
+        set t_Co=256
         let g:solorized_termcolors=256
         let g:solarized_termtrans=1
-        let g:solarized_contrast="high"
+        let g:solarized_contrast="normal"
         let g:solarized_visibility="normal"
         set background=dark
-        colorscheme molokai
-        "colorscheme solarized
+        "colorscheme molokai
+        colorscheme solarized
     endif
 
 "设置标记一列的背景颜色和数字一行颜色一致
