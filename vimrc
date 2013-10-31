@@ -31,11 +31,16 @@
         " General
             Bundle 'altercation/vim-colors-solarized'
             Bundle 'spf13/vim-colors'
+            Bundle 'flazz/vim-colorschemes'
+            Bundle 'tomasr/molokai'
+            Bundle 'godlygeek/csapprox'
             " Bundle 'bling/vim-airline'
             " Bundle 'Lokaltog/powerline'
             Bundle 'Lokaltog/vim-powerline'
-            Bundle 'tomasr/molokai'
             Bundle 'kien/rainbow_parentheses.vim'
+            Bundle 'myusuf3/numbers.vim'
+            Bundle 'airblade/vim-gitgutter'
+            Bundle 'Yggdroot/indentLine'
             Bundle 'spf13/vim-autoclose'
             Bundle 'tpope/vim-surround'
             Bundle 'tpope/vim-repeat'
@@ -47,17 +52,11 @@
             Bundle 'vim-scripts/sessionman.vim'
             Bundle 'matchit.zip'
             Bundle 'bronson/vim-trailing-whitespace'
-            " unknow function csapprox
-            Bundle 'godlygeek/csapprox'
             Bundle 'jistr/vim-nerdtree-tabs'
-            Bundle 'flazz/vim-colorschemes'
             Bundle 'mbbill/undotree'
-            Bundle 'myusuf3/numbers.vim'
             Bundle 'nathanaelkane/vim-indent-guides'
             Bundle 'tpope/vim-abolish.git'
-            Bundle 'airblade/vim-gitgutter'
-            Bundle 'kien/rainbow_parentheses.vim'
-            Bundle 'Yggdroot/indentLine'
+            Bundle 'corntrace/bufexplorer'
             "Bundle 'fholgado/minibufexpl.vim'
         " General Programming
             " Pick one of the checksyntax, jslint, or syntastic
@@ -122,43 +121,33 @@
     " timespan for a combine key command
     set timeoutlen=2000
 
+    " Configure backspace so it acts as it should act
+    set backspace=eol,start,indent
+    set whichwrap+=b,s,h,l,[,],<,>
+
+    "- 则点击光标不会换,用于复制
+    " 修复ctrl+m 多光标操作选择的bug，但是改变了ctrl+v进行字符选中时将包含光标下的字符
+    "set selection=exclusive
+    set selection=inclusive
+    set selectmode=mouse,key
+
+    " No annoying sound on errors
+    set novisualbell
+    set noerrorbells
+    set t_vb=
+
+
+
 " === VIM user interface ========================================
     " Set 7 lines to the cursor - when moving vertically using j/k
     " the number of context lines you would like to see above and below the cursor
     set scrolloff=7
     " allow for cursor beyond last character
     set virtualedit=onemore
-    " set shortmess+=filmnrxoOtT   ??
+    set shortmess+=filmnrxoOtT "   ??
 
 
 
-" 备份,到另一个位置. 防止误删, 目前是取消备份
-"set backup
-"set backupext=.bak
-"set backupdir=~/bak/vimbk/
-
-" 取消备份。 视情况自己改
-set nobackup
-set noswapfile
-
-
-" Configure backspace so it acts as it should act
-set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
-
-"设置 退出vim后，内容显示在终端屏幕, 可以用于查看和复制
-"set t_ti= t_te=
-
-"- 则点击光标不会换,用于复制
-" 修复ctrl+m 多光标操作选择的bug，但是改变了ctrl+v进行字符选中时将包含光标下的字符
-"set selection=exclusive
-set selection=inclusive
-set selectmode=mouse,key
-
-    " No annoying sound on errors
-    set novisualbell
-    set noerrorbells
-    set t_vb=
 
 " ===  Show 展示/排班等界面格式设置 ============================
     set title          " change the terminal's title
@@ -296,21 +285,20 @@ set selectmode=mouse,key
 " ===  自动补全配置  =========================================
     "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
     set completeopt=longest,menu
-    set wildmenu       " Turn on the wild menu
-    " Show list instead of just completing
+    set wildmenu       " Show list instead of just completing
     " Command <Tab> Completion, list matches, then longest common part, then all
     set wildmode=list:longest,full
 
-    "离开插入模式后自动关闭预览窗口
-    autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-    "回车即选中当前项
-    inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+    ""离开插入模式后自动关闭预览窗口
+    "autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+    ""回车即选中当前项
+    "inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
 
-    "上下左右键的行为 会显示其他信息
-    inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-    inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-    inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-    inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+    ""上下左右键的行为 会显示其他信息
+    "inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+    "inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+    "inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+    "inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 
     " Ignore compiled files
@@ -338,130 +326,119 @@ set selectmode=mouse,key
     " Remember info about open buffers on close"
     set viminfo^=%
 
+" === hot key  ===============================================================
+
+    " Quickly edit/reload the vimrc file
+    nmap <silent> <leader>ev :e $MYVIMRC<CR>
+    nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+    "强迫自己用 hjkl
+    "map <Left> <Nop>
+    "map <Right> <Nop>
+    "map <Up> <Nop>
+    "map <Down> <Nop>
+
+    "Treat long lines as break lines (useful when moving around in them)
+    map j gj
+    map k gk
+    " Go to home and end using capitalized directions
+    noremap H 0
+    noremap L $
+    " Remap VIM 0 to first non-blank character
+    map 0 ^
+
+    " better command line editing (bash style)
+    cnoremap <C-f> <Right>
+    cnoremap <C-b> <Left>
+    cnoremap <C-a> <Home>
+    cnoremap <C-e> <End>
+
+    "Smart way to move between windows
+    map <C-j> <C-W>j
+    map <C-k> <C-W>k
+    map <C-h> <C-W>h
+    map <C-l> <C-W>l
+
+    " copy from cursor to end
+    map Y y$
+
+    " Speed up scrolling of the viewport slightly
+    nnoremap <C-e> 3<C-e>
+    nnoremap <C-y> 3<C-y>
+
+    "set paste when in insert mode, press <F12> to go to paste mode where you can
+    "paste mass data that won't be autoindented
+    set pastetoggle=<F12>
+    " disbale paste mode when leaving insert mode
+    au InsertLeave * set nopaste
 
 
-"==========================================
-"hot key  自定义快捷键
-"==========================================
+    " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
+    "map <space> /
+    "map <c-@> ?"
 
-" Quickly edit/reload the vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
+    " w!! to sudo & write a file
+    cmap w!! w !sudo tee >/dev/null %
+    noremap <silent><leader>/ :nohls<CR>
 
-"强迫自己用 hjkl
-"map <Left> <Nop>
-"map <Right> <Nop>
-"map <Up> <Nop>
-"map <Down> <Nop>
+    " In insert mode use kj to leave insert mode
+    inoremap kj <Esc>
+    " I can type :help on my own, thanks.
+    noremap <F1> <Esc>
 
-"Treat long lines as break lines (useful when moving around in them)
-map j gj
-map k gk
-" Go to home and end using capitalized directions
-noremap H 0
-noremap L $
-" Remap VIM 0 to first non-blank character
-map 0 ^
+    "nnoremap <leader>v V`}
+    "Use sane(very magic) regexes
+    nnoremap / /\v
+    vnoremap / /\v
 
-" better command line editing (bash style)
-cnoremap <C-f> <Right>
-cnoremap <C-b> <Left>
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
+    "Keep search pattern at the center of the screen."
+    nnoremap <silent> n nzz
+    nnoremap <silent> N Nzz
+    nnoremap <silent> * *zz
+    nnoremap <silent> # #zz
+    nnoremap <silent> g* g*zz
 
-"Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+    "Use arrow key to change buffer"
+    "noremap <left> :bp<CR>
+    "noremap <right> :bn<CR>
 
-" copy from cursor to end
-map Y y$
+    " Add a newline before / after current line
+    nmap t o<ESC>k
+    nmap T O<ESC>j
 
-" Speed up scrolling of the viewport slightly
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
+    " ctrl +jk to move lines
+    noremap <C-j> :m-2<CR>
+    noremap <C-k> :m+<CR>
+    inoremap <C-j> <Esc>:m+<CR>
+    inoremap <C-k> <Esc>:m-2<CR>
 
-"set paste when in insert mode, press <F12> to go to paste mode where you can
-"paste mass data that won't be autoindented
-set pastetoggle=<F12>
-" disbale paste mode when leaving insert mode
-au InsertLeave * set nopaste
+    " Quickly close the current window
+    nnoremap <leader>q :q<CR>
+    nnoremap <leader>wq :wq<CR>
 
+    au VimResized * exe "normal! \<c-w>="
 
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-"map <space> /
-"map <c-@> ?"
+    " select all
+    map <Leader>sa ggVG"
 
-" w!! to sudo & write a file
-cmap w!! w !sudo tee >/dev/null %
-noremap <silent><leader>/ :nohls<CR>
+    " automatically reload vimrc when it's saved
+    au BufWritePost .vimrc so ~/.vimrc
 
-inoremap kj <Esc>
-" I can type :help on my own, thanks.
-noremap <F1> <Esc>"
+    " Close the current buffer
+    "map <leader>bd :Bclose<cr>
+    "" " Close all the buffers
+    "map <leader>ba :1,1000 bd!<cr>
 
-nnoremap ; :
+    map <leader>tn :tabnew<cr>
+    map <leader>to :tabonly<cr>
+    map <leader>tc :tabclose<cr>
+    map <leader>tm :tabmove<cr>
 
-nnoremap <leader>v V`}
+    " tabnext  tabpreviouse
 
-"Use sane regexes"
-nnoremap / /\v
-vnoremap / /\v
-
-"Keep search pattern at the center of the screen."
-nnoremap <silent> n nzz
-nnoremap <silent> N Nzz
-nnoremap <silent> * *zz
-nnoremap <silent> # #zz
-nnoremap <silent> g* g*zz
-
-"Use arrow key to change buffer"
-"noremap <left> :bp<CR>
-"noremap <right> :bn<CR>
-
-""Jump to start and end of line using the home row keys
-nmap t o<ESC>k
-nmap T O<ESC>j
-
-" ctrl +jk to move lines   经常敲错换错行...一直没想好配哪个映射
-"noremap <C-k> :m+<CR>
-"noremap <C-j> :m-2<CR>
-"inoremap <C-j> <Esc>:m+<CR>
-"inoremap <C-k> <Esc>:m-2<CR>
-
-" Quickly close the current window
-nnoremap <leader>q :q<CR>
-nnoremap <leader>wq :wq<CR>
-
-" Use ,d (or ,dd or ,dj or 20,dd) to delete a line without adding it to the
-" yanked stack (also, in visual mode)
-"nnoremap <silent> <leader>d "_d
-"vnoremap <silent> <leader>d "_d
-
-"au VimResized * exe "normal! \<c-w>=""
-
-" select all
-map <Leader>sa ggVG"
-
-" automatically reload vimrc when it's saved
-au BufWritePost .vimrc so ~/.vimrc
-
-" Close the current buffer
-"map <leader>bd :Bclose<cr>
-"" " Close all the buffers
-"map <leader>ba :1,1000 bd!<cr>
-
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
-
-" tabnext  tabpreviouse
-
-" Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+    " Opens a new tab with the current buffer's path
+    " Super useful when editing files in the same directory
+    map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 
 " bundle 插件管理和配置项
 "========================== config for plugins begin ======================================
