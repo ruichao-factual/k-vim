@@ -346,6 +346,8 @@
     noremap L $
     " Remap VIM 0 to first non-blank character
     map 0 ^
+    " copy from cursor to end
+    map Y y$
 
     " better command line editing (bash style)
     cnoremap <C-f> <Right>
@@ -359,8 +361,18 @@
     map <C-h> <C-W>h
     map <C-l> <C-W>l
 
-    " copy from cursor to end
-    map Y y$
+    if has("user_commands")
+        command! -bang -nargs=* -complete=file E e<bang> <args>
+        command! -bang -nargs=* -complete=file W w<bang> <args>
+        command! -bang -nargs=* -complete=file Wq wq<bang> <args>
+        command! -bang -nargs=* -complete=file WQ wq<bang> <args>
+        command! -bang Wa wa<bang>
+        command! -bang WA wa<bang>
+        command! -bang Q q<bang>
+        command! -bang QA qa<bang>
+        command! -bang Qa qa<bang>
+    endif
+
 
     " Speed up scrolling of the viewport slightly
     nnoremap <C-e> 3<C-e>
@@ -398,10 +410,6 @@
     nnoremap <silent> # #zz
     nnoremap <silent> g* g*zz
 
-    "Use arrow key to change buffer"
-    "noremap <left> :bp<CR>
-    "noremap <right> :bn<CR>
-
     " Add a newline before / after current line
     nmap t o<ESC>k
     nmap T O<ESC>j
@@ -416,7 +424,7 @@
     nnoremap <leader>q :q<CR>
     nnoremap <leader>wq :wq<CR>
 
-    au VimResized * exe "normal! \<c-w>="
+    "au VimResized * exe "normal! \<c-w>="
 
     " select all
     map <Leader>sa ggVG"
@@ -453,12 +461,7 @@
     " Super useful when editing files in the same directory
     map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 
-" bundle 插件管理和配置项
 "========================== config for plugins begin ======================================
-
-" 0-bundle the plugins
-"package dependent:  ctags
-"python dependent:  pep8, pyflake
 
 
 " ===  NERDTree ==============================================================
@@ -483,21 +486,21 @@
 
 " ===  vim-autoclose  ========================================================
     let g:autoclose_vim_commentmode = 1   " Don't paired " for vim config file
-"for minibufferexpl
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
-"解决FileExplorer窗口变小问题
-let g:miniBufExplForceSyntaxEnable = 1
-let g:miniBufExplorerMoreThanOne=2
-let g:miniBufExplCycleArround=1
+" ===  minibufferexpl  =======================================================
+    let g:miniBufExplMapWindowNavVim = 1
+    let g:miniBufExplMapWindowNavArrows = 1
+    let g:miniBufExplMapCTabSwitchBufs = 1
+    let g:miniBufExplModSelTarget = 1
+    "解决FileExplorer窗口变小问题
+    let g:miniBufExplForceSyntaxEnable = 1
+    let g:miniBufExplorerMoreThanOne=2
+    let g:miniBufExplCycleArround=1
 
-" 默认方向键左右可以切换buffer
-nnoremap <TAB> :MBEbn<CR>
-noremap <leader>bn :MBEbn<CR>
-noremap <leader>bp :MBEbp<CR>
-noremap <leader>bd :MBEbd<CR>
+    " 默认方向键左右可以切换buffer
+    nnoremap <TAB> :MBEbn<CR>
+    noremap <leader>bn :MBEbn<CR>
+    noremap <leader>bp :MBEbp<CR>
+    noremap <leader>bd :MBEbd<CR>
 
 "标签导航
 " === Tagbar  ================================================================
@@ -505,7 +508,6 @@ nmap <F9> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 
 "标签导航 要装ctags
-Bundle 'vim-scripts/taglist.vim'
 set tags=tags;/
 let Tlist_Ctags_Cmd="/usr/bin/ctags"
 nnoremap <silent> <F8> :TlistToggle<CR>
@@ -550,10 +552,10 @@ let g:ctrlp_mruf_max=500
 let g:ctrlp_follow_symlinks=1
 
 " === vim-powerline  =========================================================
-" if want to use fancy,need to add font patch ->
-" git clone git://gist.github.com/1630581.git ~/.fonts/ttf-dejavu-powerline
-let g:Powerline_symbols = 'fancy'
-let g:Powerline_symbols = 'unicode'
+    " if want to use fancy,need to add font patch ->
+    " git clone git://gist.github.com/1630581.git ~/.fonts/ttf-dejavu-powerline
+    let g:Powerline_symbols = 'fancy'
+    let g:Powerline_symbols = 'unicode'
 
 
 "===  kien/rainbow_parentheses.vim  ==========================================
@@ -593,20 +595,18 @@ let g:Powerline_symbols = 'unicode'
 
 "迄今为止用到的最好的自动VIM自动补全插件
 " ===  Bundle 'Valloric/YouCompleteMe'  ======================================
-"youcompleteme  默认tab  s-tab 和自动补全冲突
-"let g:ycm_key_list_select_completion=['<c-n>']
-"let g:ycm_key_list_select_completion = ['<Down>']
-"let g:ycm_key_list_previous_completion=['<c-p>']
-"let g:ycm_key_list_previous_completion = ['<Up>']
+    "youcompleteme  默认tab  s-tab 和自动补全冲突
+    "let g:ycm_key_list_select_completion=['<c-n>']
+    "let g:ycm_key_list_select_completion = ['<Down>']
+    "let g:ycm_key_list_previous_completion=['<c-p>']
+    "let g:ycm_key_list_previous_completion = ['<Up>']
 
-
-"快速插入代码片段
-"Bundle 'vim-scripts/UltiSnips'
-"Bundle 'SirVer/ultisnips'
-"let g:UltiSnipsExpandTrigger = "<tab>"
-"let g:UltiSnipsJumpForwardTrigger = "<tab>"
-"定义存放代码片段的文件夹 .vim/snippets下，使用自定义和默认的，将会的到全局，有冲突的会提示
-"let g:UltiSnipsSnippetDirectories=["snippets", "bundle/UltiSnips/UltiSnips"]
+    "Bundle 'vim-scripts/UltiSnips'
+    "Bundle 'SirVer/ultisnips'
+    "let g:UltiSnipsExpandTrigger = "<tab>"
+    "let g:UltiSnipsJumpForwardTrigger = "<tab>"
+    "定义存放代码片段的文件夹 .vim/snippets下，使用自定义和默认的，将会的到全局，有冲突的会提示
+    "let g:UltiSnipsSnippetDirectories=["snippets", "bundle/UltiSnips/UltiSnips"]
 
 
 "for code alignment
@@ -675,7 +675,7 @@ let g:vim_markdown_folding_disabled=1
 
 "################### 其他 ###################"
 " task list
-Bundle 'vim-scripts/TaskList.vim'
+" Bundle 'vim-scripts/TaskList.vim'
 map <leader>td <Plug>TaskList
 
 "edit history, 可以查看回到某个历史状态
