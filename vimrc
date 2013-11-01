@@ -39,29 +39,31 @@
             " Bundle 'Lokaltog/vim-powerline'
             Bundle 'kien/rainbow_parentheses.vim'
             Bundle 'myusuf3/numbers.vim'
-            Bundle 'airblade/vim-gitgutter'
             Bundle 'Yggdroot/indentLine'
+            " Bundle 'nathanaelkane/vim-indent-guides'
+            Bundle 'airblade/vim-gitgutter'
+        " General move and edit
+            Bundle 'Lokaltog/vim-easymotion'
             Bundle 'spf13/vim-autoclose'
             Bundle 'tpope/vim-surround'
             Bundle 'tpope/vim-repeat'
             Bundle 'scrooloose/nerdtree'
+            Bundle 'corntrace/bufexplorer'
+            Bundle 'fholgado/minibufexpl.vim'
             Bundle 'kien/ctrlp.vim'
-            Bundle 'Lokaltog/vim-easymotion'
             Bundle 'terryma/vim-multiple-cursors'
             Bundle 'vim-scripts/sessionman.vim'
+            " allows you to configure % to match more than just single characters
             Bundle 'matchit.zip'
             Bundle 'bronson/vim-trailing-whitespace'
             Bundle 'jistr/vim-nerdtree-tabs'
             Bundle 'mbbill/undotree'
-            Bundle 'nathanaelkane/vim-indent-guides'
             Bundle 'tpope/vim-abolish.git'
-            Bundle 'corntrace/bufexplorer'
-            Bundle 'fholgado/minibufexpl.vim'
         " General Programming
-            " Pick one of the checksyntax, jslint, or syntastic
-            Bundle 'Valloric/YouCompleteMe'
-            Bundle 'scrooloose/syntastic'
             Bundle 'tpope/vim-fugitive'
+            " Pick one of the checksyntax, jslint, or syntastic
+            Bundle 'scrooloose/syntastic'
+            Bundle 'kevinw/pyflakes-vim'
             " Bundle 'mattn/webapi-vim'
             Bundle 'mattn/gist-vim'
             Bundle 'scrooloose/nerdcommenter'
@@ -69,7 +71,10 @@
             if executable('ctags')
                 Bundle 'majutsushi/tagbar'
             endif
+            Bundle 'vim-scripts/TaskList.vim'
+            Bundle 'terryma/vim-expand-region'
         " Snippets & AutoComplete
+            Bundle 'Valloric/YouCompleteMe'
             Bundle 'Shougo/neocomplcache'
             Bundle 'Shougo/neosnippet'
             Bundle 'honza/vim-snippets'
@@ -80,10 +85,13 @@
         " Ruby
             Bundle 'tpope/vim-rails'
         " Python
+            Bundle 'hdima/python-syntax'
             Bundle 'nvie/vim-flake8'
             Bundle 'python.vim'
             Bundle 'python_match.vim'
             Bundle 'pythoncomplete'
+        "jinja2 highlight
+            Bundle 'Glench/Vim-Jinja2-Syntax'
         " Java
             Bundle 'derekwyatt/vim-scala'
             Bundle 'derekwyatt/vim-sbt'
@@ -92,8 +100,14 @@
             Bundle 'groenewege/vim-less'
             Bundle 'briancollins/vim-jst'
             Bundle 'kchmck/vim-coffee-script'
+            Bundle "pangloss/vim-javascript"
+            Bundle 'nono/jquery.vim'
         " NodeJs
             Bundle 'moll/vim-node'
+        " Nginx
+            Bundle 'thiderman/nginx-vim-syntax'
+        " Markdown
+            Bundle 'plasticboy/vim-markdown'
         Bundle 'ervandew/supertab'
         " Vim-scripts repos
         " Bundle 'L9'
@@ -126,11 +140,11 @@
     set backspace=eol,start,indent
     set whichwrap+=b,s,h,l,[,],<,>
 
-    if has ('x') && has ('gui') " On Linux use + register for copy-paste
-        set clipboard=unnamedplus
-    elseif has ('gui')     " On mac and Windows, use * register for copy-paste
-        set clipboard=unnamed
-    endif
+    "if has ('x') && has ('gui') " On Linux use + register for copy-paste
+    "    set clipboard=unnamedplus
+    "elseif has ('gui')     " On mac and Windows, use * register for copy-paste
+    "    set clipboard=unnamed
+    "endif
     set go+=a  "when select by mouse, default copy to clipboard
     set selectmode=mouse,key
 
@@ -149,10 +163,6 @@
     set virtualedit=onemore
     set shortmess+=filmnrxoOtT "   ??
 
-
-
-
-" ===  Show 展示/排班等界面格式设置 ============================
     set title          " change the terminal's title
     set number         " Show line number
     set wrap           " Turn wrap on
@@ -176,6 +186,24 @@
     set cursorline     " Highlight current column
     set showcmd        " Show command in status line
     set laststatus=2   " Always show the status line
+
+    if has('cmdline_info')
+        set ruler                   " Show the ruler
+        set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
+        set showcmd                 " Show partial commands in status line and
+                                    " Selected characters/lines in visual mode
+    endif
+
+    if has('statusline')
+        set laststatus=2
+        " Broken down into easily includeable segments
+        set statusline=%<%f\                     " Filename
+        set statusline+=%w%h%m%r                 " Options
+        set statusline+=%{fugitive#statusline()} " Git Hotness
+        set statusline+=\ [%{&ff}/%Y]            " Filetype
+        set statusline+=\ [%{getcwd()}]          " Current dir
+        set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+    endif
 
 
 " ===  Fold config  ===========================================
@@ -579,6 +607,10 @@
         \ ]
     let g:rbpt_max = 40
     let g:rbpt_loadcmd_toggle = 0
+    au VimEnter * RainbowParenthesesToggle
+    au Syntax * RainbowParenthesesLoadRound
+    au Syntax * RainbowParenthesesLoadSquare
+    au Syntax * RainbowParenthesesLoadBraces
 
 " ===  Yggdroot/indentLine  ==================================================
     let g:indentLine_noConcealCursor = 1
@@ -596,15 +628,13 @@
 " ===  Airline  ==============================================================
     let g:airline_powerline_fonts = 1
     let g:airline_theme="molokai"
-"迄今为止用到的最好的自动VIM自动补全插件
-" ===  Bundle 'Valloric/YouCompleteMe'  ======================================
-    "youcompleteme  默认tab  s-tab 和自动补全冲突
-    "let g:ycm_key_list_select_completion=['<c-n>']
-    "let g:ycm_key_list_select_completion = ['<Down>']
-    "let g:ycm_key_list_previous_completion=['<c-p>']
-    "let g:ycm_key_list_previous_completion = ['<Up>']
+    "let g:airline#extensions#tabline#enabled = 1
+    if !exists('g:airline_symbols')
+        let g:airline_symbols = {}
+    endif
+    let g:airline_symbols.space = "\ua0"
 
-    "Bundle 'vim-scripts/UltiSnips'
+" ===  Bundle 'vim-scripts/UltiSnips'
     "Bundle 'SirVer/ultisnips'
     "let g:UltiSnipsExpandTrigger = "<tab>"
     "let g:UltiSnipsJumpForwardTrigger = "<tab>"
@@ -612,79 +642,55 @@
     "let g:UltiSnipsSnippetDirectories=["snippets", "bundle/UltiSnips/UltiSnips"]
 
 
-"for code alignment
 " ===  Bundle 'godlygeek/tabular'  ===========================================
-nmap <Leader>a= :Tabularize /=<CR>
-vmap <Leader>a= :Tabularize /=<CR>
-nmap <Leader>a: :Tabularize /:\zs<CR>
-vmap <Leader>a: :Tabularize /:\zs<CR>
+    nmap <Leader>a= :Tabularize /=<CR>
+    vmap <Leader>a= :Tabularize /=<CR>
+    nmap <Leader>a: :Tabularize /:\zs<CR>
+    vmap <Leader>a: :Tabularize /:\zs<CR>
 
-"for visual selection
-"Bundle 'terryma/vim-expand-region'
-"map = <Plug>(expand_region_expand)
-"map - <Plug>(expand_region_shrink)
+    "for visual selection
+    "Bundle 'terryma/vim-expand-region'
+    "map = <Plug>(expand_region_expand)
+    "map - <Plug>(expand_region_shrink)
 
-"for mutil cursor
-"Bundle 'terryma/vim-multiple-cursors'
-"let g:multi_cursor_use_default_mapping=0
-" Default mapping
-"let g:multi_cursor_next_key='<C-m>'
-"let g:multi_cursor_prev_key='<C-p>'
-"let g:multi_cursor_skip_key='<C-x>'
-"let g:multi_cursor_quit_key='<Esc>'
-
-
-
-" 编辑时自动语法检查标红, vim-flake8目前还不支持,所以多装一个
-"" 使用pyflakes,速度比pylint快
-"Bundle 'scrooloose/syntastic'
-"let g:syntastic_error_symbol='>>'
-"let g:syntastic_warning_symbol='>'
-"let g:syntastic_check_on_open=1
-"let g:syntastic_enable_highlighting = 0
-""let g:syntastic_python_checker="flake8,pyflakes,pep8,pylint"
-"let g:syntastic_python_checkers=['pyflakes']
-"highlight SyntasticErrorSign guifg=white guibg=black
-"
-"" python fly check, 弥补syntastic只能打开和保存才检查语法的不足
-"Bundle 'kevinw/pyflakes-vim'
-"let g:pyflakes_use_quickfix = 0
+    "for mutil cursor
+    "Bundle 'terryma/vim-multiple-cursors'
+    "let g:multi_cursor_use_default_mapping=0
+    " Default mapping
+    "let g:multi_cursor_next_key='<C-m>'
+    "let g:multi_cursor_prev_key='<C-p>'
+    "let g:multi_cursor_skip_key='<C-x>'
+    "let g:multi_cursor_quit_key='<Esc>'
 
 
 
-" for python.vim syntax highlight
-" === Bundle 'hdima/python-syntax' ===========================================
-let python_highlight_all = 1
+" ===  Bundle 'scrooloose/syntastic'
+    let g:syntastic_error_symbol='>>'
+    let g:syntastic_warning_symbol='>'
+    let g:syntastic_check_on_open=1
+    let g:syntastic_enable_highlighting = 0
+    "let g:syntastic_python_checker="flake8,pyflakes,pep8,pylint"
+    let g:syntastic_python_checkers=['pyflakes']
+    highlight SyntasticErrorSign guifg=white guibg=black
+
+    " python fly check, 弥补syntastic只能打开和保存才检查语法的不足
+    let g:pyflakes_use_quickfix = 0
 
 
-" for markdown
-" ===  Bundle 'plasticboy/vim-markdown'  =====================================
-let g:vim_markdown_folding_disabled=1
 
-" for javascript
-"Bundle "pangloss/vim-javascript"
-"let g:html_indent_inctags = "html,body,head,tbody"
-"let g:html_indent_script1 = "inc"
-"let g:html_indent_style1 = "inc"
-"
-""for jquery
-"Bundle 'nono/jquery.vim'
-"
-""for jinja2 highlight
-"Bundle 'Glench/Vim-Jinja2-Syntax'
-"
-""for nginx conf file highlight.   need to confirm it works
-"Bundle 'thiderman/nginx-vim-syntax'
+" ===  'hdima/python-syntax' ===========================================
+    let python_highlight_all = 1
 
-"################### 其他 ###################"
-" task list
-" Bundle 'vim-scripts/TaskList.vim'
-map <leader>td <Plug>TaskList
+" ===  'plasticboy/vim-markdown'  =====================================
+    let g:vim_markdown_folding_disabled=1
 
-"edit history, 可以查看回到某个历史状态
-"Bundle 'sjl/gundo.vim'
-"nnoremap <leader>h :GundoToggle<CR>
+" ===  for javascript
+    let g:html_indent_inctags = "html,body,head,tbody"
+    let g:html_indent_script1 = "inc"
+    let g:html_indent_style1 = "inc"
 
+" ===  Bundle 'vim-scripts/TaskList.vim'
+    map <leader>td <Plug>TaskList
 
 " ===  GUI, scheme, color  ===================================================
     syntax enable
@@ -693,7 +699,6 @@ map <leader>td <Plug>TaskList
     if has("mac") || has("macunix")
         "set guifont=inconsolata\ for\ Powerline:h16
         set guifont=Anonymice\ Powerline:h16
-        "set guifont=monaco:h13
     elseif has("win16") || has("win32")
         set guifont=Bitstream\ Vera\ Sans\ Mono:h11
     elseif has("linux")
@@ -717,35 +722,32 @@ map <leader>td <Plug>TaskList
     if has("gui_running")
         set guioptions-=T
         set guioptions-=e
+        " Disable scrollbars
         set guioptions-=r
+        set guioptions-=R
         set guioptions-=L
+        set guioptions-=l
         set guitablabel=%M\ %t
         set showtabline=1
         set linespace=2
         set noimd
         colorscheme solarized
-        "let g:molokai_original = 1
     endif
     set colorcolumn=80
 
-"设置标记一列的背景颜色和数字一行颜色一致
-hi! link SignColumn   LineNr
-hi! link ShowMarksHLl DiffAdd
-hi! link ShowMarksHLu DiffChange
+    "设置标记一列的背景颜色和数字一行颜色一致
+    hi! link SignColumn   LineNr
+    hi! link ShowMarksHLl DiffAdd
+    hi! link ShowMarksHLu DiffChange
 
-"" for error highlight，防止错误整行标红导致看不清
-highlight clear SpellBad
-highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline
-highlight clear SpellCap
-highlight SpellCap term=underline cterm=underline
-highlight clear SpellRare
-highlight SpellRare term=underline cterm=underline
-highlight clear SpellLocal
-highlight SpellLocal term=underline cterm=underline
+    "" for error highlight，防止错误整行标红导致看不清
+    highlight clear SpellBad
+    highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline
+    highlight clear SpellCap
+    highlight SpellCap term=underline cterm=underline
+    highlight clear SpellRare
+    highlight SpellRare term=underline cterm=underline
+    highlight clear SpellLocal
+    highlight SpellLocal term=underline cterm=underline
 
-" settings for kien/rainbow_parentheses.vim
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
 
