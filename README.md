@@ -174,45 +174,34 @@ molokai主题
 -------------
 ### Plugin introduction
 ### colorthemes
-#### [altercation/vim-colors-solarized](https://github.com/altercation/vim-colors-solarized)
-#### [tomasr/molokai](https://github.com/tomasr/molokai)
-#### [flazz/vim-colorthemes](https://github.com/flazz/vim-colorschemes)
-#### [spf13/vim-colors](https://github.com/spf13/vim-colors/)
+##### [altercation/vim-colors-solarized](https://github.com/altercation/vim-colors-solarized)
+##### [tomasr/molokai](https://github.com/tomasr/molokai)
+##### [flazz/vim-colorthemes](https://github.com/flazz/vim-colorschemes)
+##### [spf13/vim-colors](https://github.com/spf13/vim-colors/)
 #### godlygeek/csapprox
-    Make gvim-only colorschemes work transparently in terminal vim
     [CSApprox](http://www.vim.org/scripts/script.php?script_id=2390)
+    Make gvim-only colorschemes work transparently in terminal vim
+
 ### 自定义快捷键说明
 
-    F1  关掉，防止跳出帮助
-    F2  set nu/nonu
-    F3  set list/nolist
-    F4  set wrap/nowrap
-    F5  set paste/nopaste
-    F6  syntax on/off
-    空格 /开启查找
-    Y   =y$   复制到行尾
-    w!!  以sudo的权限保存
-    kj   <Esc>，不用到角落去按esc了
-    t    新起一行，下面，不进入插入模式
-    T    新起一行，上面
-    ,sa   全选(select all)
-    hjkl  上下左右，强迫使用，要解开的自己改
-    ctrl + jkhl 进行上下左右窗口跳转,不需要ctrl+w+jkhl
+    F1   Turn off help
+    F2   Set wrap/nowrap
+    F3   Numbers Toggle (Turn on/off relative number)
+    F4   Number Toggle (Show on/off number, need first turn off relative number)
+    F12  Set paste/nopaste (Turn off autoindent etc. for paste)
+    Y    Make Y the same action as D, C
+    w!!  Save file use sudo
+    t    add a line below current line
+    T    add a line before current line
+    ctrl + j/k/h/l  switch between different split windows
 
     ,tn  new tab
     ,tc  tab close
     ,to  tab only
-    ,tm  tab move
     ,te  new tab edit
-    ctrl+n  相对行号绝对行号变换，默认用相对行号
-    5j/5k  在相对行号模式下，往上移动5行 往下移动5行
 
-    ,y 展示历史剪贴板
-    ,yc 清空
-    yy/dd -> p -> ctrl+p可以替换非最近一次剪贴内容
-
-    ,p 开启文件搜索 ctrlp
-    ,/ 去除匹配高亮
+    ,p   open ctrlp
+    ,/   set off search high light
 
 --------------------
 
@@ -251,8 +240,8 @@ molokai主题
             K.......Jump up inside directories at the current tree depth  到同目录第一个节点
             J.......Jump down inside directories at the current tree depth 最后一个节点
             o.......Open files, directories and bookmarks
-            i.......Open selected file in a split window上下分屏
-            s.......Open selected file in a new vsplit左右分屏
+            i.......Open selected file in a split window
+            s.......Open selected file in a new vsplit
    演示
 
    ![thenerdtree](https://github.com/wklken/gallery/blob/master/vim/thenerdtree.gif?raw=true)
@@ -263,10 +252,9 @@ molokai主题
 
         [sd]
             <Tab>  切换buffer
-            左右方向键  切换buffer
-            ,bn   切到后一个
-            ,bp   切到前一个
-            ,bd   关闭当前buffer
+            ,bn   switch to next buffer
+            ,bp   switch to previous buffer
+            ,bd   close current buffer
 
 2. ####[majutsushi/tagbar](https://github.com/majutsushi/tagbar)
 
@@ -563,16 +551,16 @@ molokai主题
 
 2. ####[tpope/vim-fugitive](https://github.com/tpope/vim-fugitive)
 
-   git插件
+   git plugin
 
    不是很习惯,所以用的次数太少,目前和现有配置快捷键有冲突,尚未解决
 
 
-3. ####[sjl/gundo.vim](https://github.com/sjl/gundo.vim)
+3. ####[mbbill/undotree](https://github.com/mbill/undotree)
 
-   编辑文件时光机
+   make full use of Vim perminent history
 
-        [sd] ,h  查看文件编辑历史
+        [sd] ,u  查看文件编辑历史
 
 > 待考察的
 

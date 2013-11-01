@@ -30,9 +30,9 @@
         " Bundle 'tpope/vim-fugitive'
         " General
             Bundle 'altercation/vim-colors-solarized'
+            Bundle 'tomasr/molokai'
             Bundle 'spf13/vim-colors'
             Bundle 'flazz/vim-colorschemes'
-            Bundle 'tomasr/molokai'
             Bundle 'godlygeek/csapprox'
             Bundle 'bling/vim-airline'
             " Bundle 'Lokaltog/powerline'
@@ -313,23 +313,10 @@
     set magic
 
 " ===  自动补全配置  =========================================
-    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
     set completeopt=longest,menu
     set wildmenu       " Show list instead of just completing
     " Command <Tab> Completion, list matches, then longest common part, then all
     set wildmode=list:longest,full
-
-    ""离开插入模式后自动关闭预览窗口
-    "autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-    ""回车即选中当前项
-    "inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
-
-    ""上下左右键的行为 会显示其他信息
-    "inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-    "inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-    "inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-    "inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
-
 
     " Ignore compiled files
     set wildignore=*.o,*~,*.pyc,*.class
@@ -357,10 +344,6 @@
     set viminfo^=%
 
 " === hot key  ===============================================================
-
-    " Quickly edit/reload the vimrc file
-    nmap <silent> <leader>ev :e $MYVIMRC<CR>
-    nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
     "强迫自己用 hjkl
     "map <Left> <Nop>
@@ -416,19 +399,16 @@
 
 
     " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-    "map <space> /
-    "map <c-@> ?"
+    " map <space> /
+    " map <c-@> ?"
 
     " w!! to sudo & write a file
     cmap w!! w !sudo tee >/dev/null %
     noremap <silent><leader>/ :nohls<CR>
 
-    " In insert mode use kj to leave insert mode
-    inoremap kj <Esc>
     " I can type :help on my own, thanks.
     noremap <F1> <Esc>
 
-    "nnoremap <leader>v V`}
     "Use sane(very magic) regexes
     nnoremap / /\v
     vnoremap / /\v
@@ -454,7 +434,7 @@
     nnoremap <leader>q :q<CR>
     nnoremap <leader>wq :wq<CR>
 
-    "au VimResized * exe "normal! \<c-w>="
+    au VimResized * exe "normal! \<c-w>="
 
     " select all
     " map <Leader>sa ggVG"
@@ -476,14 +456,15 @@
     au BufWritePost .vimrc so ~/.vimrc
 
     " Close the current buffer
-    "map <leader>bd :Bclose<cr>
-    "" " Close all the buffers
-    "map <leader>ba :1,1000 bd!<cr>
+    map <leader>bd :Bclose<cr>
+    " Close all the buffers
+    map <leader>ba :1,1000 bd!<cr>
 
     map <leader>tn :tabnew<cr>
     map <leader>to :tabonly<cr>
     map <leader>tc :tabclose<cr>
-    map <leader>tm :tabmove<cr>
+    map <leader>tf :tabnext<cr>
+    map <leader>tb :tabprev<cr>
 
     " tabnext  tabpreviouse
 
@@ -511,8 +492,8 @@
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
 
 " ===  Numbers.vim  ==========================================================
-    nnoremap <F4> :NumbersToggle<CR>
-    nnoremap <F3> :set nonumber!<CR>
+    nnoremap <F3> :NumbersToggle<CR>
+    nnoremap <F4> :set nonumber!<CR>
 
 " ===  vim-autoclose  ========================================================
     let g:autoclose_vim_commentmode = 1   " Don't paired " for vim config file
