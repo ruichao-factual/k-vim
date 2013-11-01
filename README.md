@@ -174,10 +174,10 @@ molokai主题
 -------------
 ### Plugin introduction
 ### colorthemes
-    [altercation/vim-colors-solarized](https://github.com/altercation/vim-colors-solarized)
-    [tomasr/molokai](https://github.com/tomasr/molokai)
-    [flazz/vim-colorthemes](https://github.com/flazz/vim-colorschemes)
-    [spf13/vim-colors](https://github.com/spf13/vim-colors/)
+#### [altercation/vim-colors-solarized](https://github.com/altercation/vim-colors-solarized)
+#### [tomasr/molokai](https://github.com/tomasr/molokai)
+#### [flazz/vim-colorthemes](https://github.com/flazz/vim-colorschemes)
+#### [spf13/vim-colors](https://github.com/spf13/vim-colors/)
 #### godlygeek/csapprox
     Make gvim-only colorschemes work transparently in terminal vim
     [CSApprox](http://www.vim.org/scripts/script.php?script_id=2390)
