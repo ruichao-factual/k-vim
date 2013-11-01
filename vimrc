@@ -1,4 +1,4 @@
-"==========================================
+"=============================================================================
 " Author:  ruichao
 " Version: 1
 " Email: ruichaoxue@gmail.com
@@ -11,8 +11,9 @@
 "     ->hot key  自定义快捷键
 "     ->bundle 插件管理和配置项
 "     ->colortheme 主题,及一些展示上颜色的修改
-"==========================================
-" ===  Use Vundle to manage plugin  ============================
+"=============================================================================
+
+" ===  Use Vundle to manage plugin  ==========================================
     " :BundleInstall     install
     " :BundleInstall!    update
     " :BundleClean       remove plugin not in list
@@ -33,9 +34,9 @@
             Bundle 'flazz/vim-colorschemes'
             Bundle 'tomasr/molokai'
             Bundle 'godlygeek/csapprox'
-            " Bundle 'bling/vim-airline'
+            Bundle 'bling/vim-airline'
             " Bundle 'Lokaltog/powerline'
-            Bundle 'Lokaltog/vim-powerline'
+            " Bundle 'Lokaltog/vim-powerline'
             Bundle 'kien/rainbow_parentheses.vim'
             Bundle 'myusuf3/numbers.vim'
             Bundle 'airblade/vim-gitgutter'
@@ -46,7 +47,6 @@
             Bundle 'scrooloose/nerdtree'
             Bundle 'kien/ctrlp.vim'
             Bundle 'Lokaltog/vim-easymotion'
-            Bundle 'Valloric/YouCompleteMe'
             Bundle 'terryma/vim-multiple-cursors'
             Bundle 'vim-scripts/sessionman.vim'
             Bundle 'matchit.zip'
@@ -56,9 +56,10 @@
             Bundle 'nathanaelkane/vim-indent-guides'
             Bundle 'tpope/vim-abolish.git'
             Bundle 'corntrace/bufexplorer'
-            "Bundle 'fholgado/minibufexpl.vim'
+            Bundle 'fholgado/minibufexpl.vim'
         " General Programming
             " Pick one of the checksyntax, jslint, or syntastic
+            Bundle 'Valloric/YouCompleteMe'
             Bundle 'scrooloose/syntastic'
             Bundle 'tpope/vim-fugitive'
             " Bundle 'mattn/webapi-vim'
@@ -102,6 +103,7 @@
 
     filetype on "required!
     filetype indent on "required!
+    filetype plugin on
 
 " ===  General config  =========================================
     " set how many lines of history VIM has to remember
@@ -126,14 +128,10 @@
 
     if has ('x') && has ('gui') " On Linux use + register for copy-paste
         set clipboard=unnamedplus
-    elseif has ('gui')          " On mac and Windows, use * register for copy-paste
+    elseif has ('gui')     " On mac and Windows, use * register for copy-paste
         set clipboard=unnamed
     endif
-    set go+=a
-    "- 则点击光标不会换,用于复制
-    " 修复ctrl+m 多光标操作选择的bug，但是改变了ctrl+v进行字符选中时将包含光标下的字符
-    "set selection=exclusive
-    set selection=inclusive
+    set go+=a  "when select by mouse, default copy to clipboard
     set selectmode=mouse,key
 
     " No annoying sound on errors
@@ -227,7 +225,6 @@
             set termencoding=euc-jp
             set fileencoding=enc-jp
         endif
-
         " Detect UTF-8 locale, and replace CJK setting if needed
         if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
             set encoding=utf-8
@@ -271,7 +268,7 @@
     "set backupdir=~/k-vim/backup//,.
     "set directory=~/k-vim/swap//,.
 
-" ===  Text, tab and indent related
+" ===  Text, tab and indent related  =========================================
     set expandtab      " Use spaces instead of tabs
     set smarttab       " Be smart when using tabs
     set shiftwidth=4   " 1 tab == 4 spaces
@@ -432,7 +429,7 @@
     "au VimResized * exe "normal! \<c-w>="
 
     " select all
-    map <Leader>sa ggVG"
+    " map <Leader>sa ggVG"
     " Map <Leader>ff to display all lines with keyword under cursor
     " and ask which one to jump to
     nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
@@ -507,54 +504,52 @@
     noremap <leader>bp :MBEbp<CR>
     noremap <leader>bd :MBEbd<CR>
 
-"标签导航
 " === Tagbar  ================================================================
-nmap <F9> :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
+    nmap <F9> :TagbarToggle<CR>
+    let g:tagbar_autofocus = 1
 
-"标签导航 要装ctags
-set tags=tags;/
-let Tlist_Ctags_Cmd="/usr/bin/ctags"
-nnoremap <silent> <F8> :TlistToggle<CR>
-let Tlist_Auto_Highlight_Tag = 1
-let Tlist_Auto_Open = 0
-let Tlist_Auto_Update = 1
-let Tlist_Close_On_Select = 0
-let Tlist_Compact_Format = 0
-let Tlist_Display_Prototype = 0
-let Tlist_Display_Tag_Scope = 1
-let Tlist_Enable_Fold_Column = 0
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_File_Fold_Auto_Close = 0
-let Tlist_GainFocus_On_ToggleOpen = 1
-let Tlist_Hightlight_Tag_On_BufEnter = 1
-let Tlist_Inc_Winwidth = 0
-let Tlist_Max_Submenu_Items = 1
-let Tlist_Max_Tag_Length = 30
-let Tlist_Process_File_Always = 0
-let Tlist_Show_Menu = 0
-let Tlist_Show_One_File = 1
-let Tlist_Sort_Type = "order"
-let Tlist_Use_Horiz_Window = 0
-let Tlist_Use_Right_Window = 0
-let Tlist_WinWidth = 25
+    set tags=tags;/
+    let Tlist_Ctags_Cmd="/usr/bin/ctags"
+    nnoremap <silent> <F8> :TlistToggle<CR>
+    let Tlist_Auto_Highlight_Tag = 1
+    let Tlist_Auto_Open = 0
+    let Tlist_Auto_Update = 1
+    let Tlist_Close_On_Select = 0
+    let Tlist_Compact_Format = 0
+    let Tlist_Display_Prototype = 0
+    let Tlist_Display_Tag_Scope = 1
+    let Tlist_Enable_Fold_Column = 0
+    let Tlist_Exit_OnlyWindow = 1
+    let Tlist_File_Fold_Auto_Close = 0
+    let Tlist_GainFocus_On_ToggleOpen = 1
+    let Tlist_Hightlight_Tag_On_BufEnter = 1
+    let Tlist_Inc_Winwidth = 0
+    let Tlist_Max_Submenu_Items = 1
+    let Tlist_Max_Tag_Length = 30
+    let Tlist_Process_File_Always = 0
+    let Tlist_Show_Menu = 0
+    let Tlist_Show_One_File = 1
+    let Tlist_Sort_Type = "order"
+    let Tlist_Use_Horiz_Window = 0
+    let Tlist_Use_Right_Window = 0
+    let Tlist_WinWidth = 25
 
-" Bundle 'kien/ctrlp.vim'
-let g:ctrlp_map = '<leader>p'
-let g:ctrlp_cmd = 'CtrlP'
-map <leader>f :CtrlPMRU<CR>
-"set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux"
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
-    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz)$',
-    \ }
-"\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
-let g:ctrlp_working_path_mode=0
-let g:ctrlp_match_window_bottom=1
-let g:ctrlp_max_height=15
-let g:ctrlp_match_window_reversed=0
-let g:ctrlp_mruf_max=500
-let g:ctrlp_follow_symlinks=1
+    " Bundle 'kien/ctrlp.vim'
+    let g:ctrlp_map = '<leader>p'
+    let g:ctrlp_cmd = 'CtrlP'
+    "map <leader>f :CtrlPMRU<CR>
+    "set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux"
+    let g:ctrlp_custom_ignore = {
+        \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+        \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz)$',
+        \ }
+    "\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+    let g:ctrlp_working_path_mode=0
+    let g:ctrlp_match_window_bottom=1
+    let g:ctrlp_max_height=15
+    let g:ctrlp_match_window_reversed=0
+    let g:ctrlp_mruf_max=500
+    let g:ctrlp_follow_symlinks=1
 
 " === vim-powerline  =========================================================
     " if want to use fancy,need to add font patch ->
@@ -598,6 +593,9 @@ let g:ctrlp_follow_symlinks=1
     " If undotree is opened, it is likely one wants to interact with it
     let g:undotree_SetFocusWhenToggle=1
 
+" ===  Airline  ==============================================================
+    let g:airline_powerline_fonts = 1
+    let g:airline_theme="molokai"
 "迄今为止用到的最好的自动VIM自动补全插件
 " ===  Bundle 'Valloric/YouCompleteMe'  ======================================
     "youcompleteme  默认tab  s-tab 和自动补全冲突
@@ -688,23 +686,35 @@ map <leader>td <Plug>TaskList
 "nnoremap <leader>h :GundoToggle<CR>
 
 
-" ===  GUI, scheme, color  =======================================
+" ===  GUI, scheme, color  ===================================================
     syntax enable
     syntax on
     " Set font according to system
     if has("mac") || has("macunix")
-        "set guifont=inconsolata:h16
-        set guifont=monaco:h13
+        "set guifont=inconsolata\ for\ Powerline:h16
+        set guifont=Anonymice\ Powerline:h16
+        "set guifont=monaco:h13
     elseif has("win16") || has("win32")
         set guifont=Bitstream\ Vera\ Sans\ Mono:h11
     elseif has("linux")
         set guifont=Monospace\ 11
     endif
+    hi Pmenu  guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
+    hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
+    hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
 
     " Set extra options when running in GUI mode
     " scheme and colors
+    set background=dark
+    if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
+        let g:solarized_termcolors=256
+        let g:solarized_termtrans=1
+        let g:solarized_contrast="normal"
+        let g:solarized_visibility="normal"
+        color solarized             " Load a colorscheme
+    endif
+
     if has("gui_running")
-        set guifont=Monaco:h14
         set guioptions-=T
         set guioptions-=e
         set guioptions-=r
@@ -713,19 +723,10 @@ map <leader>td <Plug>TaskList
         set showtabline=1
         set linespace=2
         set noimd
-        "colorscheme molokai
         colorscheme solarized
         "let g:molokai_original = 1
-    else
-        set t_Co=256
-        let g:solorized_termcolors=256
-        let g:solarized_termtrans=1
-        let g:solarized_contrast="normal"
-        let g:solarized_visibility="normal"
-        set background=dark
-        "colorscheme molokai
-        colorscheme solarized
     endif
+    set colorcolumn=80
 
 "设置标记一列的背景颜色和数字一行颜色一致
 hi! link SignColumn   LineNr
