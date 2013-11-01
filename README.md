@@ -1,14 +1,6 @@
 k-vim
 ======================
 
-### vim插件分类及快捷键
-
-> 给人一条Vim 命令，他能折腾一晚上；告诉他怎么自定义Vim 命令，他能捣腾一辈子
->
-> 生命不息,折腾不止 (╯‵□′)╯︵┻━┻)
->
-> 编辑器之神 = 生产力(效率为王) + 性感(界面快捷键) + 装x神器
-
 ### vim基本用法
 
 初学者: [vim训练稿](http://blog.csdn.net/wklken/article/details/7533272)
@@ -180,7 +172,15 @@ molokai主题
 ![molokai](https://github.com/wklken/gallery/blob/master/vim/molokai.png?raw=true)
 
 -------------
-
+### Plugin introduction
+### colorthemes
+    [altercation/vim-colors-solarized](https://github.com/altercation/vim-colors-solarized)
+    [tomasr/molokai](https://github.com/tomasr/molokai)
+    [flazz/vim-colorthemes](https://github.com/flazz/vim-colorschemes)
+    [spf13/vim-colors](https://github.com/spf13/vim-colors/)
+#### godlygeek/csapprox
+    Make gvim-only colorschemes work transparently in terminal vim
+    [CSApprox](http://www.vim.org/scripts/script.php?script_id=2390)
 ### 自定义快捷键说明
 
     F1  关掉，防止跳出帮助
