@@ -4,13 +4,6 @@
 " Email: ruichaoxue@gmail.com
 " Last_modify: 2013-10-27
 " Sections:
-"     ->General 基础设置
-"     ->Show 展示/排班等界面格式设置
-"     ->file encode, 文件编码,格式
-"     ->others 其它基础配置
-"     ->hot key  自定义快捷键
-"     ->bundle 插件管理和配置项
-"     ->colortheme 主题,及一些展示上颜色的修改
 "=============================================================================
 
 " ===  Use Vundle to manage plugin  ==========================================
@@ -104,6 +97,8 @@
             Bundle 'nono/jquery.vim'
         " NodeJs
             Bundle 'moll/vim-node'
+        " Jade templates
+            Bundle 'digitaltoad/vim-jade'
         " Nginx
             Bundle 'thiderman/nginx-vim-syntax'
         " Markdown
@@ -149,9 +144,10 @@
     set selectmode=mouse,key
 
     " No annoying sound on errors
-    set novisualbell
-    set noerrorbells
-    set t_vb=
+    set noerrorbells visualbell t_vb=
+    if has('autocmd')
+      autocmd GUIEnter * set visualbell t_vb=
+    endif
 
 
 
@@ -498,14 +494,14 @@
 " ===  vim-autoclose  ========================================================
     let g:autoclose_vim_commentmode = 1   " Don't paired " for vim config file
 " ===  minibufferexpl  =======================================================
-    let g:miniBufExplMapWindowNavVim = 1
-    let g:miniBufExplMapWindowNavArrows = 1
-    let g:miniBufExplMapCTabSwitchBufs = 1
-    let g:miniBufExplModSelTarget = 1
-    "解决FileExplorer窗口变小问题
-    let g:miniBufExplForceSyntaxEnable = 1
-    let g:miniBufExplorerMoreThanOne=2
-    let g:miniBufExplCycleArround=1
+    "let g:miniBufExplMapWindowNavVim = 1
+    "let g:miniBufExplMapWindowNavArrows = 1
+    "let g:miniBufExplMapCTabSwitchBufs = 1
+    "let g:miniBufExplModSelTarget = 1
+    ""解决FileExplorer窗口变小问题
+    "let g:miniBufExplForceSyntaxEnable = 1
+    "let g:miniBufExplorerMoreThanOne=2
+    "let g:miniBufExplCycleArround=1
 
     " 默认方向键左右可以切换buffer
     nnoremap <TAB> :MBEbn<CR>
@@ -563,9 +559,11 @@
 " === vim-powerline  =========================================================
     " if want to use fancy,need to add font patch ->
     " git clone git://gist.github.com/1630581.git ~/.fonts/ttf-dejavu-powerline
-    let g:Powerline_symbols = 'fancy'
-    let g:Powerline_symbols = 'unicode'
+    " let g:Powerline_symbols = 'fancy'
+    " let g:Powerline_symbols = 'unicode'
 
+" === easymotion =============================================================
+    "let g:EasyMotion_leader_key='<leader>'
 
 "===  kien/rainbow_parentheses.vim  ==========================================
     let g:rbpt_colorpairs = [
@@ -643,8 +641,6 @@
     "let g:multi_cursor_skip_key='<C-x>'
     "let g:multi_cursor_quit_key='<Esc>'
 
-
-
 " ===  Bundle 'scrooloose/syntastic'
     let g:syntastic_error_symbol='>>'
     let g:syntastic_warning_symbol='>'
@@ -711,7 +707,6 @@
         set guitablabel=%M\ %t
         set showtabline=1
         set linespace=2
-        set noimd
         colorscheme solarized
     endif
     set colorcolumn=80
@@ -730,5 +725,7 @@
     highlight SpellRare term=underline cterm=underline
     highlight clear SpellLocal
     highlight SpellLocal term=underline cterm=underline
-
-
+    " set for jade javascript html
+    au BufRead,BufNewFile *.jade set filetype=jade
+    au BufRead,BufNewFile *.ms set filetype=javascript
+    autocmd FileType jade,html,xml setlocal et sta sw=2 sts=2
