@@ -398,6 +398,18 @@
     " map <space> /
     " map <c-@> ?"
 
+    " Buffer manager
+    nnoremap <Leader>bp :bp<CR>
+    nnoremap <Leader>bn :bn<CR>
+    nnoremap <Leader>b1 :1b<CR>
+    nnoremap <Leader>b2 :2b<CR>
+    nnoremap <Leader>b3 :3b<CR>
+    nnoremap <Leader>b4 :4b<CR>
+    nnoremap <Leader>b5 :5b<CR>
+    nnoremap <Leader>b6 :6b<CR>
+    nnoremap <Leader>b7 :7b<CR>
+    nnoremap <Leader>b8 :8b<CR>
+    nnoremap <Leader>b9 :9b<CR>
     " w!! to sudo & write a file
     cmap w!! w !sudo tee >/dev/null %
     noremap <silent><leader>/ :nohls<CR>
@@ -597,6 +609,8 @@
         let g:airline_symbols = {}
     endif
     let g:airline_symbols.space = "\ua0"
+    let g:airline#extensions#tabline#enabled = 1
+
 
 " ===  Bundle 'vim-scripts/UltiSnips'
     "Bundle 'SirVer/ultisnips'
