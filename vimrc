@@ -42,7 +42,7 @@
             Bundle 'tpope/vim-repeat'
             Bundle 'scrooloose/nerdtree'
             Bundle 'corntrace/bufexplorer'
-            Bundle 'fholgado/minibufexpl.vim'
+            "Bundle 'fholgado/minibufexpl.vim'
             Bundle 'kien/ctrlp.vim'
             Bundle 'terryma/vim-multiple-cursors'
             Bundle 'vim-scripts/sessionman.vim'
@@ -493,21 +493,6 @@
 
 " ===  vim-autoclose  ========================================================
     let g:autoclose_vim_commentmode = 1   " Don't paired " for vim config file
-" ===  minibufferexpl  =======================================================
-    "let g:miniBufExplMapWindowNavVim = 1
-    "let g:miniBufExplMapWindowNavArrows = 1
-    "let g:miniBufExplMapCTabSwitchBufs = 1
-    "let g:miniBufExplModSelTarget = 1
-    ""解决FileExplorer窗口变小问题
-    "let g:miniBufExplForceSyntaxEnable = 1
-    "let g:miniBufExplorerMoreThanOne=2
-    "let g:miniBufExplCycleArround=1
-
-    " 默认方向键左右可以切换buffer
-    nnoremap <TAB> :MBEbn<CR>
-    noremap <leader>bn :MBEbn<CR>
-    noremap <leader>bp :MBEbp<CR>
-    noremap <leader>bd :MBEbd<CR>
 
 " === Tagbar  ================================================================
     nmap <F9> :TagbarToggle<CR>
