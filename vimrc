@@ -190,19 +190,20 @@
                                     " Selected characters/lines in visual mode
     endif
 
-    if has('statusline')
-        set laststatus=2
-        " Broken down into easily includeable segments
-        set statusline=%<%f\                     " Filename
-        set statusline+=%w%h%m%r                 " Options
-        set statusline+=%{fugitive#statusline()} " Git Hotness
-        set statusline+=\ [%{&ff}/%Y]            " Filetype
-        set statusline+=\ [%{getcwd()}]          " Current dir
-        set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
-    endif
+    " Since we use airline plugin (Comment out this statusline config)
+    "if has('statusline')
+    "    set laststatus=2
+    "    " Broken down into easily includeable segments
+    "    set statusline=%<%f\                     " Filename
+    "    set statusline+=%w%h%m%r                 " Options
+    "    set statusline+=%{fugitive#statusline()} " Git Hotness
+    "    set statusline+=\ [%{&ff}/%Y]            " Filetype
+    "    set statusline+=\ [%{getcwd()}]          " Current dir
+    "    set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+    "endif
 
 
-" ===  Fold config  ===========================================
+" ===  Fold config  ==========================================================
     set foldenable     " Auto fold code
     set foldmethod=indent " Fold method
     set foldlevel=99      " Set unfold as default
@@ -219,7 +220,17 @@
     nmap <leader>f8 :set foldlevel=8<CR>
     nmap <leader>f9 :set foldlevel=9<CR>
 
-" ===  encoding, filecodings setting ==========================
+" ===  Fugitive ==============================================================
+    nnoremap <silent> <leader>gs :Gstatus<CR>
+    nnoremap <silent> <leader>gd :Gdiff<CR>
+    nnoremap <silent> <leader>gc :Gcommit<CR>
+    nnoremap <silent> <leader>gb :Gblame<CR>
+    nnoremap <silent> <leader>gl :Glog<CR>
+    nnoremap <silent> <leader>gp :Git push<CR>
+    nnoremap <silent> <leader>gw :Gwrite<CR>:GitGutter<CR>
+    nnoremap <silent> <leader>gg :GitGutterToggle<CR>
+"
+" ===  encoding, filecodings setting =========================================
     set encoding=utf8   " Set utf8 as standard encoding
     "encoding script
     if has("multi_byte")
@@ -609,7 +620,9 @@
         let g:airline_symbols = {}
     endif
     let g:airline_symbols.space = "\ua0"
-    let g:airline#extensions#tabline#enabled = 1
+    "let g:airline#extensions#tabline#enabled = 1
+    "let g:airline#extensions#tabline#left_sep = ' '
+    "let g:airline#extensions#tabline#left_alt_sep = '|'
 
 
 " ===  Bundle 'vim-scripts/UltiSnips'
