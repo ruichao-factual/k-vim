@@ -255,12 +255,19 @@ molokai主题
         <F1>           Toggle help information.
         <enter>        Opens the buffer that is under the cursor into the current window.
         <leftmouse>    Opens the buffer that is under the cursor into the current window.
-		<shift-enter>  Opens the buffer that is under the cursor in another tab. 		d              delete the buffer under the cursor from the list.  		R              Toggles relative path/absolute path.		T              Toggles to show only buffers for this tab or not. 		D              wipeout the buffer under the cursor from the list. 
+		<shift-enter>  Opens the buffer that is under the cursor in another tab. 
+		d              delete the buffer under the cursor from the list. 
+		R              Toggles relative path/absolute path.
+		T              Toggles to show only buffers for this tab or not. 
+		D              wipeout the buffer under the cursor from the list. 
 		f              Toggles whether you are taken to the active window when selecting a buffer or not.
-        o              Opens the buffer that is under the cursor into the current window.
-        p              Toggles the showing of a split filename/pathname. 		q              Quit exploring.
-        r              Reverses the order the buffers are listed in. 		s              Selects the order the buffers are listed in. [buffer number/file name/file extension/full path.
-        t              Opens the buffer that is under the cursor in another tab. 		u              Toggles the showing of "unlisted" buffers.
+		o              Opens the buffer that is under the cursor into the current window.
+        p              Toggles the showing of a split filename/pathname. 
+        q              Quit exploring.
+        r              Reverses the order the buffers are listed in. 
+        s              Selects the order the buffers are listed in. [buffer number/file name/file extension/full path.
+        t              Opens the buffer that is under the cursor in another tab. 
+        u              Toggles the showing of "unlisted" buffers.
 
 
 3. #### [majutsushi/tagbar](https://github.com/majutsushi/tagbar)
@@ -395,7 +402,7 @@ molokai主题
 
    ![ultisnips](https://github.com/wklken/gallery/blob/master/vim/utilsnips.gif?raw=true)
 
-2. ####[scrooloose/nerdcommenter](https://github.com/scrooloose/nerdcommenter)
+3. ####[scrooloose/nerdcommenter](https://github.com/scrooloose/nerdcommenter)
 
       	The following key mappings are provided by default (there is also a menu provided that contains menu items corresponding to all the below mappings):
       	Most of the following mappings are for normal/visual mode only. The |NERDComInsertComment| mapping is for insert mode only.
@@ -432,7 +439,7 @@ molokai主题
 
    ![nerdcommenter](https://github.com/wklken/gallery/blob/master/vim/nerdcomment.gif?raw=true)
 
-3. ####[tpope/vim-surround](https://github.com/tpope/vim-surround)
+4. ####[tpope/vim-surround](https://github.com/tpope/vim-surround)
 
    必装，很给力的功能，快速给词加环绕符号,例如引号
 
@@ -452,7 +459,7 @@ molokai主题
 
    ![surround](https://github.com/wklken/gallery/blob/master/vim/surround.gif?raw=true)
 
-4. ####[Raimondi/delimitMate](https://github.com/Raimondi/delimitMate)
+5. ####[Raimondi/delimitMate](https://github.com/Raimondi/delimitMate)
 
    必装，输入引号,括号时,自动补全
 
@@ -462,7 +469,7 @@ molokai主题
 
    ![delimitmate](https://github.com/wklken/gallery/blob/master/vim/delimate.gif?raw=true)
 
-5. ####[godlygeek/tabular](https://github.com/godlygeek/tabular)
+6. ####[godlygeek/tabular](https://github.com/godlygeek/tabular)
 
    code alignment
 
@@ -470,7 +477,7 @@ molokai主题
         ,a=  按等号切分格式化
         ,a:  按逗号切分格式化
 
-6. ####[terryma/vim-expand-region](https://github.com/terryma/vim-expand-region)
+7. ####[terryma/vim-expand-region](https://github.com/terryma/vim-expand-region)
 
    选装，visual mode selection
    视图模式下可伸缩选中部分，用于快速选中某些块
@@ -483,7 +490,7 @@ molokai主题
 
    ![expand-region](https://raw.github.com/terryma/vim-expand-region/master/expand-region.gif)
 
-7. ####[vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)
+8. ####[vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)
 
    选装，多光标批量操作
 
@@ -529,13 +536,13 @@ molokai主题
 
    使用Python建议安装，python语法高亮,就是python.vim,在github,有维护和更新
 
-4. ####[jnwhiteh/vim-golang](https://github.com/jnwhiteh/vim-golang)
+2. ####[jnwhiteh/vim-golang](https://github.com/jnwhiteh/vim-golang)
 
    使用golang建议安装， golang语法高亮
 
    golang刚入门使用,项目中还没正式开始,目前很多golang的手册有配置vim的介绍,后续有需求再弄
 
-5. ####[plasticboy/vim-markdown](https://github.com/plasticboy/vim-markdown)
+3. ####[plasticboy/vim-markdown](https://github.com/plasticboy/vim-markdown)
 
    markdown语法,编辑md文件
 
@@ -543,7 +550,7 @@ molokai主题
 
    偶尔会看看js,频率不高
 
-7. ####[nono/jquery.vim](https://github.com/nono/jquery.vim)
+4. ####[nono/jquery.vim](https://github.com/nono/jquery.vim)
 
    jquery高亮
 
