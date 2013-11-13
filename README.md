@@ -399,12 +399,52 @@ molokai主题
    ![ultisnips](https://github.com/wklken/gallery/blob/master/vim/utilsnips.gif?raw=true)
 
 2. ####[scrooloose/nerdcommenter](https://github.com/scrooloose/nerdcommenter)
+    The following key mappings are provided by default (there is also a menu provided that contains menu items corresponding to all the below mappings):
 
-   必装，另一个大大提升效率的地方，快速批量加减注释
+    Most of the following mappings are for normal/visual mode only. The |NERDComInsertComment| mapping is for insert mode only.
 
-        [d] shift+v+方向键选中(默认当前行)   ->  ,cc  加上注释  -> ,cu 解开注释
+    [count]<leader>cc |NERDComComment|
+    Comment out the current line or text selected in visual mode.
 
-   演示
+    [count]<leader>cu |NERDComUncommentLine|
+    Uncomments the selected line(s).
+
+    [count]<leader>cn |NERDComNestedComment|
+    Same as <leader>cc but forces nesting.
+
+    [count]<leader>c |NERDComToggleComment|
+    Toggles the comment state of the selected line(s). If the topmost selected line is commented, all selected lines are uncommented and vice versa.
+
+    [count]<leader>ci |NERDComInvertComment|
+    Toggles the comment state of the selected line(s) individually.
+
+    [count]<leader>cm |NERDComMinimalComment|
+    Comments the given lines using only one set of multipart delimiters.
+
+    [count]<leader>cs |NERDComSexyComment|
+    Comments out the selected lines "sexily"
+
+    [count]<leader>cy |NERDComYankComment|
+    Same as <leader>cc except that the commented line(s) are yanked first.
+
+    <leader>c$ |NERDComEOLComment|
+    Comments the current line from the cursor to the end of line.
+
+    <leader>cA |NERDComAppendComment|
+    Adds comment delimiters to the end of line and goes into insert mode between them.
+
+    |NERDComInsertComment|
+    Adds comment delimiters at the current cursor position and inserts between. Disabled by default.
+
+    <leader>ca |NERDComAltDelim|
+    Switches to the alternative set of delimiters.
+
+    [count]<leader>cl
+    [count]<leader>cb |NERDComAlignedComment|
+    Same as |NERDComComment| except that the delimiters are aligned down the left side (<leader>cl) or both sides (<leader>cb).
+
+
+   demo
 
    ![nerdcommenter](https://github.com/wklken/gallery/blob/master/vim/nerdcomment.gif?raw=true)
 
@@ -578,12 +618,7 @@ molokai主题
 
 The End!
 
-wklken (凌岳/pythoner/vim党预备党员)
 
-Email: wklken@yeah.net
+Email: ruichaoxue@gmail.com
 
-Github: https://github.com/wklken
-
-Blog: http://wklken.me
-
-2013-06-11 于深圳
+Github: https://github.com/ruichao-factual
