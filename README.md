@@ -243,44 +243,46 @@ molokai主题
 
    ![thenerdtree](https://github.com/wklken/gallery/blob/master/vim/thenerdtree.gif?raw=true)
 
-2. #### [fholgado/minibufexpl.vim](https://github.com/fholgado/minibufexpl.vim)
+2. #### [corntrace/bufexplorer](https://github.com/corntrace/bufexplorer)
 
-   必装，buffer管理, 可以查找其他同类插件
+   buffer manager
 
-        [sd]
-            <Tab>  切换buffer
-            ,bn   switch to next buffer
-            ,bp   switch to previous buffer
-            ,bd   close current buffer
+        ,be  normal open
+        ,bs  force horizontal split open
+        ,bv  force vertical split open
+        
+        
+        <F1>           Toggle help information.
+        <enter>        Opens the buffer that is under the cursor into the current window.
+        <leftmouse>    Opens the buffer that is under the cursor into the current window.
+		<shift-enter>  Opens the buffer that is under the cursor in another tab. 		d              delete the buffer under the cursor from the list.  		R              Toggles relative path/absolute path.		T              Toggles to show only buffers for this tab or not. 		D              wipeout the buffer under the cursor from the list. 
+		f              Toggles whether you are taken to the active window when selecting a buffer or not.
+        o              Opens the buffer that is under the cursor into the current window.
+        p              Toggles the showing of a split filename/pathname. 		q              Quit exploring.
+        r              Reverses the order the buffers are listed in. 		s              Selects the order the buffers are listed in. [buffer number/file name/file extension/full path.
+        t              Opens the buffer that is under the cursor in another tab. 		u              Toggles the showing of "unlisted" buffers.
+
 
 3. #### [majutsushi/tagbar](https://github.com/majutsushi/tagbar)
 
-   必装,标签导航,纬度和taglist不同
+   
 
-        [sd] <F9> 打开
+        <F9>    Tagbar Toggle
+        CTRL-]  while the cursor is on a keyword (such as a function name) to jump to it's definition.
+        Ctrl-T  jump back up one level
 
-   演示
+   Demo
 
    ![tagbar](https://github.com/wklken/gallery/blob/master/vim/tagbar.gif?raw=true)
 
-4. ####[vim-scripts/taglist.vim](https://github.com/vim-scripts/taglist.vim)
-
-   必装
-
-        [sd] <F8>打开
-
-   演示:
-
-   ![taglist](https://github.com/wklken/gallery/blob/master/vim/taglist.png?raw=true)
-
-5. ####[kien/ctrlp.vim](https://github.com/hdima/python-syntax)
+4. ####[kien/ctrlp.vim](https://github.com/hdima/python-syntax)
 
    文件搜索,ack/Command-T需要依赖于外部包,不喜欢有太多依赖的,除非十分强大, 具体 [文档](http://kien.github.io/ctrlp.vim/)
 
-        [sd] ,p  打开ctrlp搜索
-        [sd] ,f  相当于mru功能，show recently opened files
+         ,p           打开ctrlp搜索
+         ,f           相当于mru功能，show recently opened files
 
-        ctrl + j/k 进行上下移动
+         ctrl + j/k   进行上下移动
 
    演示
 
@@ -323,11 +325,11 @@ molokai主题
         [sd] ,空格    去掉当前行末尾空格
 
 
-4. ####[altercation/vim-colors-solarized](https://github.com/altercation/vim-colors-solarized)
+5. ####[altercation/vim-colors-solarized](https://github.com/altercation/vim-colors-solarized)
 
    经典主题,目前我使用的,看起来舒服
 
-5. ####[tomasr/molokai](https://github.com/tomasr/molokai)
+6. ####[tomasr/molokai](https://github.com/tomasr/molokai)
 
    用sublime text2的同学应该很熟悉, 另一个主题,可选,偶尔换换味道
 
@@ -462,7 +464,7 @@ molokai主题
 
 5. ####[godlygeek/tabular](https://github.com/godlygeek/tabular)
 
-   选装，代码格式化用的，code alignment
+   code alignment
 
         [sd]
         ,a=  按等号切分格式化

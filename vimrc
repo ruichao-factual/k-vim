@@ -521,37 +521,11 @@
     nmap <F9> :TagbarToggle<CR>
     let g:tagbar_autofocus = 1
 
-    set tags=tags;/
-    let Tlist_Ctags_Cmd="/usr/bin/ctags"
-    nnoremap <silent> <F8> :TlistToggle<CR>
-    let Tlist_Auto_Highlight_Tag = 1
-    let Tlist_Auto_Open = 0
-    let Tlist_Auto_Update = 1
-    let Tlist_Close_On_Select = 0
-    let Tlist_Compact_Format = 0
-    let Tlist_Display_Prototype = 0
-    let Tlist_Display_Tag_Scope = 1
-    let Tlist_Enable_Fold_Column = 0
-    let Tlist_Exit_OnlyWindow = 1
-    let Tlist_File_Fold_Auto_Close = 0
-    let Tlist_GainFocus_On_ToggleOpen = 1
-    let Tlist_Hightlight_Tag_On_BufEnter = 1
-    let Tlist_Inc_Winwidth = 0
-    let Tlist_Max_Submenu_Items = 1
-    let Tlist_Max_Tag_Length = 30
-    let Tlist_Process_File_Always = 0
-    let Tlist_Show_Menu = 0
-    let Tlist_Show_One_File = 1
-    let Tlist_Sort_Type = "order"
-    let Tlist_Use_Horiz_Window = 0
-    let Tlist_Use_Right_Window = 0
-    let Tlist_WinWidth = 25
 
-    " Bundle 'kien/ctrlp.vim'
+" ===  'kien/ctrlp.vim'  =====================================================
     let g:ctrlp_map = '<leader>p'
     let g:ctrlp_cmd = 'CtrlP'
     "map <leader>f :CtrlPMRU<CR>
-    "set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux"
     let g:ctrlp_custom_ignore = {
         \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
         \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz)$',
@@ -563,12 +537,6 @@
     let g:ctrlp_match_window_reversed=0
     let g:ctrlp_mruf_max=500
     let g:ctrlp_follow_symlinks=1
-
-" === vim-powerline  =========================================================
-    " if want to use fancy,need to add font patch ->
-    " git clone git://gist.github.com/1630581.git ~/.fonts/ttf-dejavu-powerline
-    " let g:Powerline_symbols = 'fancy'
-    " let g:Powerline_symbols = 'unicode'
 
 " === easymotion =============================================================
     "let g:EasyMotion_leader_key='<leader>'
