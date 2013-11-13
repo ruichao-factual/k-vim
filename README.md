@@ -44,8 +44,6 @@ k-vim
 
    欢迎推荐好用更酷的插件配置:)
 
-   我的配置也会不定期更新，thx
-
 PS: 这个vim配置是我的[linux_config](https://github.com/wklken/linux_config)下一部分，如果需要，可以参考，主要是用于一键配置环境
 
 --------------
@@ -173,7 +171,7 @@ molokai主题
 
 -------------
 ### Plugin introduction
-### colorthemes
+#### colorthemes
 ##### [altercation/vim-colors-solarized](https://github.com/altercation/vim-colors-solarized)
 ##### [tomasr/molokai](https://github.com/tomasr/molokai)
 ##### [flazz/vim-colorthemes](https://github.com/flazz/vim-colorschemes)
@@ -205,7 +203,6 @@ molokai主题
 
 --------------------
 
-### 插件及其快捷键说明
 
 图片有点多，展示有点慢，截得不是很专业，耐心看完:)
 
@@ -224,11 +221,11 @@ molokai主题
 
 > 导航及搜索
 
-1. ####[scrooloose/nerdtree](https://github.com/scrooloose/nerdtree)
+1. #### [scrooloose/nerdtree](https://github.com/scrooloose/nerdtree)
 
    必装,开启目录树导航
 
-        [sd]
+        
             ,n  打开 关闭树形目录结构
 
             在nerdtree窗口常用操作：(小写当前，大写root)
@@ -246,7 +243,7 @@ molokai主题
 
    ![thenerdtree](https://github.com/wklken/gallery/blob/master/vim/thenerdtree.gif?raw=true)
 
-2. ####[fholgado/minibufexpl.vim](https://github.com/fholgado/minibufexpl.vim)
+2. #### [fholgado/minibufexpl.vim](https://github.com/fholgado/minibufexpl.vim)
 
    必装，buffer管理, 可以查找其他同类插件
 
@@ -256,7 +253,7 @@ molokai主题
             ,bp   switch to previous buffer
             ,bd   close current buffer
 
-2. ####[majutsushi/tagbar](https://github.com/majutsushi/tagbar)
+3. #### [majutsushi/tagbar](https://github.com/majutsushi/tagbar)
 
    必装,标签导航,纬度和taglist不同
 
@@ -266,7 +263,7 @@ molokai主题
 
    ![tagbar](https://github.com/wklken/gallery/blob/master/vim/tagbar.gif?raw=true)
 
-3. ####[vim-scripts/taglist.vim](https://github.com/vim-scripts/taglist.vim)
+4. ####[vim-scripts/taglist.vim](https://github.com/vim-scripts/taglist.vim)
 
    必装
 
@@ -276,7 +273,7 @@ molokai主题
 
    ![taglist](https://github.com/wklken/gallery/blob/master/vim/taglist.png?raw=true)
 
-4. ####[kien/ctrlp.vim](https://github.com/hdima/python-syntax)
+5. ####[kien/ctrlp.vim](https://github.com/hdima/python-syntax)
 
    文件搜索,ack/Command-T需要依赖于外部包,不喜欢有太多依赖的,除非十分强大, 具体 [文档](http://kien.github.io/ctrlp.vim/)
 
@@ -293,13 +290,11 @@ molokai主题
 
     被动技能,无快捷键
 
-1. ####[Lokaltog/vim-powerline](https://github.com/Lokaltog/vim-powerline)
+1. ####[bling/vim-airline](https://github.com/bling/vim-airline)
 
-   必装，状态栏美观
+   
 
-   演示
-
-   ![powerline](https://github.com/wklken/gallery/blob/master/vim/powerline.png?raw=true)
+   
 
 2. ####[kien/rainbow_parentheses.vim](https://github.com/kien/rainbow_parentheses.vim)
 
@@ -400,35 +395,35 @@ molokai主题
 
 2. ####[scrooloose/nerdcommenter](https://github.com/scrooloose/nerdcommenter)
 
-      The following key mappings are provided by default (there is also a menu provided that contains menu items corresponding to all the below mappings):
-      Most of the following mappings are for normal/visual mode only. The |NERDComInsertComment| mapping is for insert mode only.
-      [count]<leader>cc |NERDComComment|
-      Comment out the current line or text selected in visual mode.
-      [count]<leader>cu |NERDComUncommentLine|
-      Uncomments the selected line(s).
-      [count]<leader>cn |NERDComNestedComment|
-      Same as <leader>cc but forces nesting.
-      [count]<leader>c |NERDComToggleComment|
-      Toggles the comment state of the selected line(s). If the topmost selected line is commented, all selected lines are uncommented and vice versa.
-      [count]<leader>ci |NERDComInvertComment|
-      Toggles the comment state of the selected line(s) individually.
-      [count]<leader>cm |NERDComMinimalComment|
-      Comments the given lines using only one set of multipart delimiters.
-      [count]<leader>cs |NERDComSexyComment|
-      Comments out the selected lines "sexily"
-      [count]<leader>cy |NERDComYankComment|
-      Same as <leader>cc except that the commented line(s) are yanked first.
-      <leader>c$ |NERDComEOLComment|
-      Comments the current line from the cursor to the end of line.
-      <leader>cA |NERDComAppendComment|
-      Adds comment delimiters to the end of line and goes into insert mode between them.
-      |NERDComInsertComment|
-      Adds comment delimiters at the current cursor position and inserts between. Disabled by default.
-      <leader>ca |NERDComAltDelim|
-      Switches to the alternative set of delimiters.
-      [count]<leader>cl
-      [count]<leader>cb |NERDComAlignedComment|
-      Same as |NERDComComment| except that the delimiters are aligned down the left side (<leader>cl) or both sides (<leader>cb).
+      	The following key mappings are provided by default (there is also a menu provided that contains menu items corresponding to all the below mappings):
+      	Most of the following mappings are for normal/visual mode only. The |NERDComInsertComment| mapping is for insert mode only.
+      	[count]<leader>cc |NERDComComment|
+      	Comment out the current line or text selected in visual mode.
+      	[count]<leader>cu |NERDComUncommentLine|
+      	Uncomments the selected line(s).
+      	[count]<leader>cn |NERDComNestedComment|
+      	Same as <leader>cc but forces nesting.
+      	[count]<leader>c |NERDComToggleComment|
+     	Toggles the comment state of the selected line(s). If the topmost selected line is commented, all selected lines are uncommented and vice versa.
+      	[count]<leader>ci |NERDComInvertComment|
+      	Toggles the comment state of the selected line(s) individually.
+      	[count]<leader>cm |NERDComMinimalComment|
+      	Comments the given lines using only one set of multipart delimiters.
+      	[count]<leader>cs |NERDComSexyComment|
+      	Comments out the selected lines "sexily"
+      	[count]<leader>cy |NERDComYankComment|
+      	Same as <leader>cc except that the commented line(s) are yanked first.
+     	 <leader>c$ |NERDComEOLComment|
+      	Comments the current line from the cursor to the end of line.
+      	<leader>cA |NERDComAppendComment|
+     	 Adds comment delimiters to the end of line and goes into insert mode between them.
+      |	NERDComInsertComment|
+      	Adds comment delimiters at the current cursor position and inserts between. Disabled by default.
+      	<leader>ca |NERDComAltDelim|
+      	Switches to the alternative set of delimiters.
+      	[count]<leader>cl
+      	[count]<leader>cb |NERDComAlignedComment|
+      	Same as |NERDComComment| except that the delimiters are aligned down the left side (<leader>cl) or both sides (<leader>cb).
 
 
    Demo
