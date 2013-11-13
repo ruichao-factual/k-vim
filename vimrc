@@ -684,6 +684,7 @@
 " ===  GUI, scheme, color  ===================================================
     syntax enable
     syntax on
+    set t_Co=256
     " Set font according to system
     if has("mac") || has("macunix")
         "set guifont=inconsolata\ for\ Powerline:h16
