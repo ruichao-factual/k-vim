@@ -161,13 +161,6 @@ PS: 这个vim配置是我的[linux_config](https://github.com/wklken/linux_confi
 
 ### 截图
 
-solarized主题
-
-![solarized](https://github.com/wklken/gallery/blob/master/vim/solarized.png?raw=true)
-
-molokai主题
-
-![molokai](https://github.com/wklken/gallery/blob/master/vim/molokai.png?raw=true)
 
 -------------
 ### Plugin introduction
@@ -327,18 +320,20 @@ molokai主题
 
 4. ####[bronson/vim-trailing-whitespace](https://github.com/bronson/vim-trailing-whitespace)
 
-   将代码行最后无效的空格标红
-
-        [sd] ,空格    去掉当前行末尾空格
+            ,<space>    remove tailing spaces
 
 
-5. ####[altercation/vim-colors-solarized](https://github.com/altercation/vim-colors-solarized)
+5. ####[Theme: solarized](https://github.com/altercation/vim-colors-solarized)
 
-   经典主题,目前我使用的,看起来舒服
+   
+	![solarized](https://github.com/wklken/gallery/blob/master/vim/solarized.png?raw=true)
 
-6. ####[tomasr/molokai](https://github.com/tomasr/molokai)
 
-   用sublime text2的同学应该很熟悉, 另一个主题,可选,偶尔换换味道
+
+6. ####[Theme: molokai](https://github.com/tomasr/molokai)
+
+   
+	![molokai](https://github.com/wklken/gallery/blob/master/vim/molokai.png?raw=true)
 
 > 快速移动
 
@@ -346,10 +341,7 @@ molokai主题
 
 1. ####[Lokaltog/vim-easymotion](https://github.com/Lokaltog/vim-easymotion)
 
-   必装，效率提升杀手锏，跳转到光标后任意位置
-
-   配置(我的leader键配置 let g:mapleader = ',')
-
+   default hotkey <leader><leader>
         ,, + w  跳转
         ,, + fe  查找'e',快速跳转定位到某个字符位置
 
@@ -459,15 +451,13 @@ molokai主题
 
    ![surround](https://github.com/wklken/gallery/blob/master/vim/surround.gif?raw=true)
 
-5. ####[Raimondi/delimitMate](https://github.com/Raimondi/delimitMate)
+5. ####[spf13/vim-autoclose](https://github.com/spf13/vim-autoclose)
 
-   必装，输入引号,括号时,自动补全
+   autocomplete "(", "{", "[" and so on.
 
-   对python的docstring 三引号做了处理(只处理""", '''暂时没配，可以自己加)
-
-   演示
-
-   ![delimitmate](https://github.com/wklken/gallery/blob/master/vim/delimate.gif?raw=true)
+   
+   Demo
+   
 
 6. ####[godlygeek/tabular](https://github.com/godlygeek/tabular)
 
