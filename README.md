@@ -196,16 +196,11 @@ PS: 这个vim配置是我的[linux_config](https://github.com/wklken/linux_confi
 
 --------------------
 
-
-图片有点多，展示有点慢，截得不是很专业，耐心看完:)
-
-> 插件管理
+> plugins manager
 
 1. ####[gmarik/vundle](https://github.com/gmarik/vundle)
 
-    必装,用于管理所有插件
-
-    命令行模式下管理命令:
+    commands
 
         :BundleInstall     install
         :BundleInstall!    update
@@ -219,20 +214,21 @@ PS: 这个vim配置是我的[linux_config](https://github.com/wklken/linux_confi
    必装,开启目录树导航
 
         
-            ,n  打开 关闭树形目录结构
+            ,n      Toggle NERDTree
 
-            在nerdtree窗口常用操作：(小写当前，大写root)
-            x.......Close the current nodes parent收起当前目录树
-            R.......Recursively refresh the current root刷新根目录树
-            r.......Recursively refresh the current directory刷新当前目录
-            P.......Jump to the root node
-            p.......Jump to current nodes parent
-            K.......Jump up inside directories at the current tree depth  到同目录第一个节点
-            J.......Jump down inside directories at the current tree depth 最后一个节点
-            o.......Open files, directories and bookmarks
-            i.......Open selected file in a split window
-            s.......Open selected file in a new vsplit
-   演示
+            o 		Open files, directories and bookmarks
+            i		Open selected file in a split window
+            s		Open selected file in a new vsplit
+            x		Close the current nodes parent
+            R		Recursively refresh the current root
+            r		Recursively refresh the current directory
+            P		Jump to the root node
+            p		Jump to current nodes parent
+            K		Jump up inside directories at the current tree depth
+            J		Jump down inside directories at the current tree depth
+
+
+   Demo
 
    ![thenerdtree](https://github.com/wklken/gallery/blob/master/vim/thenerdtree.gif?raw=true)
 
@@ -265,7 +261,7 @@ PS: 这个vim配置是我的[linux_config](https://github.com/wklken/linux_confi
 
 3. #### [majutsushi/tagbar](https://github.com/majutsushi/tagbar)
 
-   
+   This plugin requires exuberant-ctags and will automatically generate tags for your open files. It also provides a panel to navigate easily via tags
 
         <F9>    Tagbar Toggle
         CTRL-]  while the cursor is on a keyword (such as a function name) to jump to it's definition.
@@ -277,20 +273,19 @@ PS: 这个vim配置是我的[linux_config](https://github.com/wklken/linux_confi
 
 4. ####[kien/ctrlp.vim](https://github.com/hdima/python-syntax)
 
-   文件搜索,ack/Command-T需要依赖于外部包,不喜欢有太多依赖的,除非十分强大, 具体 [文档](http://kien.github.io/ctrlp.vim/)
+   Ctrlp replaces the Command-T plugin with a 100% vim plugin. It provides an intuitive and fast mechanism to load files from the file system (with regex and fuzzy find), from open buffers, and from recently used files.[doc](http://kien.github.io/ctrlp.vim/)
 
-         ,p           打开ctrlp搜索
-         ,f           相当于mru功能，show recently opened files
+         ,p           Launch ctrlp
+         ,f           show recently opened files
 
-         ctrl + j/k   进行上下移动
+         ctrl + j/k   move up/down
 
-   演示
+   Demo
 
    ![ctrip](https://github.com/wklken/gallery/blob/master/vim/ctrlp.gif?raw=true)
 
-> 显示增强
+> Display improvement
 
-    被动技能,无快捷键
 
 1. ####[bling/vim-airline](https://github.com/bling/vim-airline)
 
@@ -300,21 +295,21 @@ PS: 这个vim配置是我的[linux_config](https://github.com/wklken/linux_confi
 
 2. ####[kien/rainbow_parentheses.vim](https://github.com/kien/rainbow_parentheses.vim)
 
-   必装,括号高亮
+   Highlight parentheses
 
-   演示
+   Demo:
 
    ![rainbow](https://github.com/wklken/gallery/blob/master/vim/rainbow_parentheses.png?raw=true)
 
 3. ####[Yggdroot/indentLine](https://github.com/Yggdroot/indentLine)
 
-   选装,装不装看个人喜好了,缩进标识
+   
 
-   另一个类似的,整块背景色的的,[nathanaelkane/vim-indent-guides](https://github.com/nathanaelkane/vim-indent-guides),自选吧, 看来看去还是st2的好看,唉
+   Alternative one  [nathanaelkane/vim-indent-guides](https://github.com/nathanaelkane/vim-indent-guides)
+   
+   tune colors to accordant with solarized. ([颜色](http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim?file=Xterm-color-table.png))
 
-   调整颜色和solarized一致,不至于太显眼影响注意力,可以根据自己主题设置颜色([颜色](http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim?file=Xterm-color-table.png))
-
-   演示:
+   Demo:
 
    ![indentline](https://github.com/wklken/gallery/blob/master/vim/indentline.png?raw=true)
 
@@ -335,17 +330,20 @@ PS: 这个vim配置是我的[linux_config](https://github.com/wklken/linux_confi
    
 	![molokai](https://github.com/wklken/gallery/blob/master/vim/molokai.png?raw=true)
 
-> 快速移动
+> Quick movement
 
-    主动技能,需要快捷键
-
+    
 1. ####[Lokaltog/vim-easymotion](https://github.com/Lokaltog/vim-easymotion)
 
-   default hotkey <leader><leader>
-        ,, + w  跳转
-        ,, + fe  查找'e',快速跳转定位到某个字符位置
+   EasyMotion provides an interactive way to use motions in Vim.
 
-   演示
+   It quickly maps each possible jump destination to a key allowing very fast and straightforward movement.
+
+   EasyMotion is triggered using the normal movements, but prefixing them with <leader><leader>
+
+   For example this screen shot demonstrates pressing ,,w | ,,fe
+ 
+  Demo:
 
    ![easy_motion](https://github.com/wklken/gallery/blob/master/vim/easymotion.gif?raw=true)
 
@@ -396,40 +394,12 @@ PS: 这个vim配置是我的[linux_config](https://github.com/wklken/linux_confi
 
 3. ####[scrooloose/nerdcommenter](https://github.com/scrooloose/nerdcommenter)
 
-      	The following key mappings are provided by default (there is also a menu provided that contains menu items corresponding to all the below mappings):
-      	Most of the following mappings are for normal/visual mode only. The |NERDComInsertComment| mapping is for insert mode only.
-      	[count]<leader>cc |NERDComComment|
-      	Comment out the current line or text selected in visual mode.
-      	[count]<leader>cu |NERDComUncommentLine|
-      	Uncomments the selected line(s).
-      	[count]<leader>cn |NERDComNestedComment|
-      	Same as <leader>cc but forces nesting.
-      	[count]<leader>c |NERDComToggleComment|
-     	Toggles the comment state of the selected line(s). If the topmost selected line is commented, all selected lines are uncommented and vice versa.
-      	[count]<leader>ci |NERDComInvertComment|
-      	Toggles the comment state of the selected line(s) individually.
-      	[count]<leader>cm |NERDComMinimalComment|
-      	Comments the given lines using only one set of multipart delimiters.
-      	[count]<leader>cs |NERDComSexyComment|
-      	Comments out the selected lines "sexily"
-      	[count]<leader>cy |NERDComYankComment|
-      	Same as <leader>cc except that the commented line(s) are yanked first.
-     	 <leader>c$ |NERDComEOLComment|
-      	Comments the current line from the cursor to the end of line.
-      	<leader>cA |NERDComAppendComment|
-     	 Adds comment delimiters to the end of line and goes into insert mode between them.
-      |	NERDComInsertComment|
-      	Adds comment delimiters at the current cursor position and inserts between. Disabled by default.
-      	<leader>ca |NERDComAltDelim|
-      	Switches to the alternative set of delimiters.
-      	[count]<leader>cl
-      	[count]<leader>cb |NERDComAlignedComment|
-      	Same as |NERDComComment| except that the delimiters are aligned down the left side (<leader>cl) or both sides (<leader>cb).
-
-
-   Demo
-
-   ![nerdcommenter](https://github.com/wklken/gallery/blob/master/vim/nerdcomment.gif?raw=true)
+      	[count]<leader>cc      	Comment out the current line or text selected in visual mode. 
+      	[count]<leader>cu      	Uncomments the selected line(s).
+      	[count]<leader>c     	Toggles the comment state of the selected line(s)(according to topmost selected line).
+      	[count]<leader>ci      	Toggles the comment state of the selected line(s) individually.
+      	[count]<leader>cm      	Comments the given lines using only one set of multipart delimiters.
+    
 
 4. ####[tpope/vim-surround](https://github.com/tpope/vim-surround)
 
@@ -439,7 +409,6 @@ PS: 这个vim配置是我的[linux_config](https://github.com/wklken/linux_confi
 
    repeat进行增强,'.'可以重复命令
 
-        [d]
         cs"' [inside]
         "Hello world!" -> 'Hello world!'
         ds"
@@ -447,25 +416,21 @@ PS: 这个vim配置是我的[linux_config](https://github.com/wklken/linux_confi
         ysiw"
         Hello -> "Hello"
 
-   演示
-
-   ![surround](https://github.com/wklken/gallery/blob/master/vim/surround.gif?raw=true)
 
 5. ####[spf13/vim-autoclose](https://github.com/spf13/vim-autoclose)
 
    autocomplete "(", "{", "[" and so on.
 
    
-   Demo
-   
-
 6. ####[godlygeek/tabular](https://github.com/godlygeek/tabular)
 
-   code alignment
+   Tabularize lets you align statements on their equal signs and other characters
 
-        [sd]
-        ,a=  按等号切分格式化
-        ,a:  按逗号切分格式化
+        <Leader>a= :Tabularize /=
+		<Leader>a: :Tabularize /:
+		<Leader>a:: :Tabularize /:\zs
+		<Leader>a, :Tabularize /,
+		<Leader>a<Bar> :Tabularize /
 
 7. ####[terryma/vim-expand-region](https://github.com/terryma/vim-expand-region)
 
