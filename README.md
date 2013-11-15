@@ -21,9 +21,7 @@
 3. Install plugin
 
         cd k-vim/
-
         sh -x install.sh
-
 
 4. Q&As:
 
@@ -31,7 +29,7 @@
    
       This plugin require Vim >7.3.584
       
-   * What das install.sh do?
+   * What does install.sh do?
    
    	  1. link vimrc/vim to $HOME/.vimrc, $HOME/.vim
    	  2. clone vundle to local bundle directory
@@ -40,6 +38,13 @@
    
 5. Plugins manage => [vundle](https://github.com/gmarik/vundle)：
 
+
+
+## Plugins introduction
+------------
+> Plugins manager
+
+#### [gmarik/vundle](https://github.com/gmarik/vundle)
 
    Delete plugins: remove/commend out the bundle line and then execute:
 
@@ -52,12 +57,6 @@
    Update:
    
         :BundleUpdate
-
-## Plugins introduction
-------------
-> Plugins manager
-
-1. #### [gmarik/vundle](https://github.com/gmarik/vundle)
 
 
 >  navigating and managing files
