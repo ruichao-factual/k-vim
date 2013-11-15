@@ -584,13 +584,13 @@
     let g:airline_powerline_fonts = 1
     let g:airline_theme="molokai"
     "let g:airline#extensions#tabline#enabled = 1
-    if !exists('g:airline_symbols')
-        let g:airline_symbols = {}
-    endif
-    let g:airline_symbols.space = "\ua0"
+    "if !exists('g:airline_symbols')
+        "let g:airline_symbols = {}
+    "endif
+    "let g:airline_symbols.space = "\ua0"
     "let g:airline#extensions#tabline#enabled = 1
-    "let g:airline#extensions#tabline#left_sep = ' '
-    "let g:airline#extensions#tabline#left_alt_sep = '|'
+    let g:airline#extensions#tabline#left_sep = ' '
+    let g:airline#extensions#tabline#left_alt_sep = '|'
 
 
 " ===  Bundle 'vim-scripts/UltiSnips'
@@ -698,7 +698,7 @@
     hi! link ShowMarksHLu DiffChange
 
     "" for error highlight，防止错误整行标红导致看不清
-    highlight clear SpellBad
+    "highlight clear SpellBad
     highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline
     highlight clear SpellCap
     highlight SpellCap term=underline cterm=underline
