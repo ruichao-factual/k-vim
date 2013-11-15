@@ -155,9 +155,7 @@
 
    ![indentline](https://github.com/wklken/gallery/blob/master/vim/indentline.png?raw=true)
 
-4. ####[bronson/vim-trailing-whitespace](https://github.com/bronson/vim-trailing-whitespace)
-
-            ,<space>    remove tailing spaces
+7. #### [airblade/vim-gitgutter]
 
 
 
@@ -253,12 +251,12 @@
 
 
 
-5. ####[spf13/vim-autoclose](https://github.com/spf13/vim-autoclose)
+6. ####[spf13/vim-autoclose](https://github.com/spf13/vim-autoclose)
 
    autocomplete "(", "{", "[" and so on.
 
    
-6. ####[godlygeek/tabular](https://github.com/godlygeek/tabular)
+7. ####[godlygeek/tabular](https://github.com/godlygeek/tabular)
 
    Tabularize lets you align statements on their equal signs and other characters
 
@@ -268,7 +266,7 @@
 		<Leader>a, :Tabularize /,
 		<Leader>a<Bar> :Tabularize /
 
-7. ####[terryma/vim-expand-region](https://github.com/terryma/vim-expand-region)
+8. ####[terryma/vim-expand-region](https://github.com/terryma/vim-expand-region)
 
    选装，visual mode selection
    视图模式下可伸缩选中部分，用于快速选中某些块
@@ -281,7 +279,7 @@
 
    ![expand-region](https://raw.github.com/terryma/vim-expand-region/master/expand-region.gif)
 
-8. ####[vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)
+9. ####[vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)
 
    选装，多光标批量操作
 
@@ -315,6 +313,10 @@
 
    演示
    ![pyflakes](https://github.com/wklken/gallery/blob/master/vim/pyflakes.png?raw=true)
+   
+3. ####[bronson/vim-trailing-whitespace](https://github.com/bronson/vim-trailing-whitespace)
+
+            ,<space>    remove tailing spaces
 
 > 具体语言
 

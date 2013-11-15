@@ -24,8 +24,6 @@
         " General
             Bundle 'altercation/vim-colors-solarized'
             Bundle 'tomasr/molokai'
-            Bundle 'spf13/vim-colors'
-            Bundle 'flazz/vim-colorschemes'
             Bundle 'godlygeek/csapprox'
             Bundle 'bling/vim-airline'
             " Bundle 'Lokaltog/powerline'
@@ -35,6 +33,7 @@
             Bundle 'Yggdroot/indentLine'
             " Bundle 'nathanaelkane/vim-indent-guides'
             Bundle 'airblade/vim-gitgutter'
+            Bundle 'tpope/vim-abolish.git'
         " General move and edit
             Bundle 'Lokaltog/vim-easymotion'
             Bundle 'spf13/vim-autoclose'
@@ -42,35 +41,33 @@
             Bundle 'tpope/vim-repeat'
             Bundle 'scrooloose/nerdtree'
             Bundle 'corntrace/bufexplorer'
-            "Bundle 'fholgado/minibufexpl.vim'
             Bundle 'kien/ctrlp.vim'
             Bundle 'terryma/vim-multiple-cursors'
-            Bundle 'vim-scripts/sessionman.vim'
+            " Bundle 'vim-scripts/sessionman.vim'
             " allows you to configure % to match more than just single characters
             Bundle 'matchit.zip'
             Bundle 'bronson/vim-trailing-whitespace'
-            Bundle 'jistr/vim-nerdtree-tabs'
+            " Bundle 'jistr/vim-nerdtree-tabs'
             Bundle 'mbbill/undotree'
-            Bundle 'tpope/vim-abolish.git'
         " General Programming
             Bundle 'tpope/vim-fugitive'
             " Pick one of the checksyntax, jslint, or syntastic
             Bundle 'scrooloose/syntastic'
             Bundle 'kevinw/pyflakes-vim'
             " Bundle 'mattn/webapi-vim'
-            Bundle 'mattn/gist-vim'
+            " Bundle 'mattn/gist-vim'
             Bundle 'scrooloose/nerdcommenter'
-            Bundle 'godlygeek/tabular'
+            " Bundle 'godlygeek/tabular'
             if executable('ctags')
                 Bundle 'majutsushi/tagbar'
             endif
-            Bundle 'vim-scripts/TaskList.vim'
+            " Bundle 'vim-scripts/TaskList.vim'
             Bundle 'terryma/vim-expand-region'
         " Snippets & AutoComplete
             Bundle 'Valloric/YouCompleteMe'
-            Bundle 'Shougo/neocomplcache'
-            Bundle 'Shougo/neosnippet'
-            Bundle 'honza/vim-snippets'
+            " Bundle 'Shougo/neocomplcache'
+            " Bundle 'Shougo/neosnippet'
+            " Bundle 'honza/vim-snippets'
         " Html
             Bundle 'amirh/HTML-AutoCloseTag'
             Bundle 'hail2u/vim-css3-syntax'
@@ -84,7 +81,7 @@
             Bundle 'python_match.vim'
             Bundle 'pythoncomplete'
         "jinja2 highlight
-            Bundle 'Glench/Vim-Jinja2-Syntax'
+            " Bundle 'Glench/Vim-Jinja2-Syntax'
         " Java
             Bundle 'derekwyatt/vim-scala'
             Bundle 'derekwyatt/vim-sbt'
@@ -100,10 +97,10 @@
         " Jade templates
             Bundle 'digitaltoad/vim-jade'
         " Nginx
-            Bundle 'thiderman/nginx-vim-syntax'
+            " Bundle 'thiderman/nginx-vim-syntax'
         " Markdown
             Bundle 'plasticboy/vim-markdown'
-        Bundle 'ervandew/supertab'
+        " Bundle 'ervandew/supertab'
         " Vim-scripts repos
         " Bundle 'L9'
         " non github repos

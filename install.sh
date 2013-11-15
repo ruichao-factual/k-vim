@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # refer  spf13-vim bootstrap.sh`
 
 BASEDIR=$(dirname $0)
