@@ -2,14 +2,11 @@
 " Author:  ruichao
 " Version: 1
 " Email: ruichaoxue@gmail.com
-" Last_modify: 2013-10-27
+" Last_modify: 2013-11-15
 " Sections:
 "=============================================================================
 
 " ===  Use Vundle to manage plugin  ==========================================
-    " :BundleInstall     install
-    " :BundleInstall!    update
-    " :BundleClean       remove plugin not in list
     set nocompatible
     filetype off   "required!
     set rtp+=~/.vim/bundle/vundle/
@@ -25,9 +22,11 @@
             Bundle 'altercation/vim-colors-solarized'
             Bundle 'tomasr/molokai'
             Bundle 'godlygeek/csapprox'
-            Bundle 'bling/vim-airline'
+            " Coding auto-detect plugin
+            Bundle 'mbbill/fencview'
             " Bundle 'Lokaltog/powerline'
             " Bundle 'Lokaltog/vim-powerline'
+            Bundle 'bling/vim-airline'
             Bundle 'kien/rainbow_parentheses.vim'
             Bundle 'myusuf3/numbers.vim'
             Bundle 'Yggdroot/indentLine'
@@ -65,7 +64,7 @@
             Bundle 'terryma/vim-expand-region'
         " Snippets & AutoComplete
             Bundle 'Valloric/YouCompleteMe'
-            " Bundle 'Shougo/neocomplcache'
+            Bundle 'Shougo/neocomplcache'
             " Bundle 'Shougo/neosnippet'
             " Bundle 'honza/vim-snippets'
         " Html
@@ -83,10 +82,10 @@
         "jinja2 highlight
             " Bundle 'Glench/Vim-Jinja2-Syntax'
         " Java
-            Bundle 'derekwyatt/vim-scala'
-            Bundle 'derekwyatt/vim-sbt'
+            " Bundle 'derekwyatt/vim-scala'
+            " Bundle 'derekwyatt/vim-sbt'
         " Javascript
-            Bundle 'elzr/vim-json'
+            "Bundle 'elzr/vim-json'
             Bundle 'groenewege/vim-less'
             Bundle 'briancollins/vim-jst'
             Bundle 'kchmck/vim-coffee-script'
@@ -116,10 +115,13 @@
     set history=1000
     " set to auto read when a file is changed from the outside
     set autoread
+
     " Automatically enable mouse usage
     set mouse=a
     " Hide the mouse cursor while typing
     set mousehide
+    "when select by mouse, default copy to clipboard
+    set go+=a
 
     " With a map leader, it's possible to do extra key combinations
     let mapleader=","
@@ -137,7 +139,6 @@
     "elseif has ('gui')     " On mac and Windows, use * register for copy-paste
     "    set clipboard=unnamed
     "endif
-    set go+=a  "when select by mouse, default copy to clipboard
     set selectmode=mouse,key
 
     " No annoying sound on errors
@@ -145,8 +146,6 @@
     if has('autocmd')
       autocmd GUIEnter * set visualbell t_vb=
     endif
-
-
 
 " === VIM user interface ========================================
     " Set 7 lines to the cursor - when moving vertically using j/k
@@ -167,7 +166,7 @@
     set list
     set listchars=tab:>·,trail:•,extends:#,nbsp:.
     " add < and > as matchpairs
-    set matchpairs+=<:>
+    " set matchpairs+=<:>
     " How many tenths of a second to blink when matching brackets
     set mat=2
     " search config
@@ -175,11 +174,12 @@
     set incsearch      " Show search result while typing
     set hlsearch       " Highlight search content
     set smartcase      " Smart about case when search
-    set cursorcolumn   " Highlight current line
-    set cursorline     " Highlight current column
-    set showcmd        " Show command in status line
-    set laststatus=2   " Always show the status line
 
+    set cursorcolumn   " Highlight current column
+    set cursorline     " Highlight current line
+    set showcmd        " Show command in status line
+
+    set laststatus=2   " Always show the status line
     if has('cmdline_info')
         set ruler                   " Show the ruler
         set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
@@ -188,16 +188,16 @@
     endif
 
     " Since we use airline plugin (Comment out this statusline config)
-    "if has('statusline')
-    "    set laststatus=2
-    "    " Broken down into easily includeable segments
-    "    set statusline=%<%f\                     " Filename
-    "    set statusline+=%w%h%m%r                 " Options
-    "    set statusline+=%{fugitive#statusline()} " Git Hotness
-    "    set statusline+=\ [%{&ff}/%Y]            " Filetype
-    "    set statusline+=\ [%{getcwd()}]          " Current dir
-    "    set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
-    "endif
+    if has('statusline')
+        set laststatus=2
+        " Broken down into easily includeable segments
+        set statusline=%<%f\                     " Filename
+        set statusline+=%w%h%m%r                 " Options
+        set statusline+=%{fugitive#statusline()} " Git Hotness
+        set statusline+=\ [%{&ff}/%Y]            " Filetype
+        set statusline+=\ [%{getcwd()}]          " Current dir
+        set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+    endif
 
 
 " ===  Fold config  ==========================================================
@@ -217,16 +217,6 @@
     nmap <leader>f8 :set foldlevel=8<CR>
     nmap <leader>f9 :set foldlevel=9<CR>
 
-" ===  Fugitive ==============================================================
-    nnoremap <silent> <leader>gs :Gstatus<CR>
-    nnoremap <silent> <leader>gd :Gdiff<CR>
-    nnoremap <silent> <leader>gc :Gcommit<CR>
-    nnoremap <silent> <leader>gb :Gblame<CR>
-    nnoremap <silent> <leader>gl :Glog<CR>
-    nnoremap <silent> <leader>gp :Git push<CR>
-    nnoremap <silent> <leader>gw :Gwrite<CR>:GitGutter<CR>
-    nnoremap <silent> <leader>gg :GitGutterToggle<CR>
-"
 " ===  encoding, filecodings setting =========================================
     set encoding=utf8   " Set utf8 as standard encoding
     "encoding script
@@ -269,10 +259,10 @@
 
     set ffs=unix,mac,dos          " Use Unix as the standard file type
 
-    " 如遇Unicode值大于255的文本，不必等到空格再折行。
+    " When come with chararter whose unicode>25, wrap without meeting spaces
     set formatoptions+=m
 
-    " 合并两行中文时，不在中间加空格：
+    " when combine two line in chinese, do not add space between them.
     set formatoptions+=B
 
 " ===  Buffer config ===========================================
@@ -300,7 +290,7 @@
     "set backupdir=~/k-vim/backup//,.
     "set directory=~/k-vim/swap//,.
 
-" ===  Text, tab and indent related  =========================================
+" ===  Text, tab and indent related  ==========================================
     set expandtab      " Use spaces instead of tabs
     set smarttab       " Be smart when using tabs
     set shiftwidth=4   " 1 tab == 4 spaces
@@ -309,14 +299,14 @@
     set autoindent     " auto indent
     set smartindent    " smart indent
 
-" ===  Other configs  =========================================
+" ===  Other configs  =========================================================
     autocmd! bufwritepost _vimrc source % " vimrc文件修改之后自动加载。 windows。
     autocmd! bufwritepost .vimrc source % " vimrc文件修改之后自动加载。 linux。
 
     " For regular expressions turn magic on
     set magic
 
-" ===  自动补全配置  =========================================
+" ===  auto complete  =========================================================
     set completeopt=longest,menu
     set wildmenu       " Show list instead of just completing
     " Command <Tab> Completion, list matches, then longest common part, then all
@@ -418,6 +408,11 @@
     nnoremap <Leader>b7 :7b<CR>
     nnoremap <Leader>b8 :8b<CR>
     nnoremap <Leader>b9 :9b<CR>
+    " Close the current buffer
+    map <leader>bd :Bclose<cr>
+    " Close all the buffers
+    map <leader>ba :1,1000 bd!<cr>
+
     " w!! to sudo & write a file
     cmap w!! w !sudo tee >/dev/null %
     noremap <silent><leader>/ :nohls<CR>
@@ -437,8 +432,8 @@
     nnoremap <silent> g* g*zz
 
     " Add a newline before / after current line
-    nmap t o<ESC>k
-    nmap T O<ESC>j
+    "nmap t o<ESC>k
+    "nmap T O<ESC>j
 
     " ctrl +jk to move lines
     noremap <C-j> :m-2<CR>
@@ -471,10 +466,6 @@
     " automatically reload vimrc when it's saved
     au BufWritePost .vimrc so ~/.vimrc
 
-    " Close the current buffer
-    map <leader>bd :Bclose<cr>
-    " Close all the buffers
-    map <leader>ba :1,1000 bd!<cr>
 
     map <leader>tn :tabnew<cr>
     map <leader>to :tabonly<cr>
@@ -519,10 +510,20 @@
     let g:tagbar_autofocus = 1
 
 
+" ===  Fugitive ==============================================================
+    nnoremap <silent> <leader>gs :Gstatus<CR>
+    nnoremap <silent> <leader>gd :Gdiff<CR>
+    nnoremap <silent> <leader>gc :Gcommit<CR>
+    nnoremap <silent> <leader>gb :Gblame<CR>
+    nnoremap <silent> <leader>gl :Glog<CR>
+    nnoremap <silent> <leader>gp :Git push<CR>
+    nnoremap <silent> <leader>gw :Gwrite<CR>:GitGutter<CR>
+    nnoremap <silent> <leader>gg :GitGutterToggle<CR>
+
 " ===  'kien/ctrlp.vim'  =====================================================
     let g:ctrlp_map = '<leader>p'
     let g:ctrlp_cmd = 'CtrlP'
-    "map <leader>f :CtrlPMRU<CR>
+    map <leader>f :CtrlPMRU<CR>
     let g:ctrlp_custom_ignore = {
         \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
         \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz)$',
@@ -579,15 +580,15 @@
 
 " ===  Airline  ==============================================================
     let g:airline_powerline_fonts = 1
-    let g:airline_theme="molokai"
+    let g:airline_theme='dark'
     "let g:airline#extensions#tabline#enabled = 1
     "if !exists('g:airline_symbols')
         "let g:airline_symbols = {}
     "endif
     "let g:airline_symbols.space = "\ua0"
     "let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tabline#left_sep = ' '
-    let g:airline#extensions#tabline#left_alt_sep = '|'
+    "let g:airline#extensions#tabline#left_sep = ' '
+    "let g:airline#extensions#tabline#left_alt_sep = '|'
 
 
 " ===  Bundle 'vim-scripts/UltiSnips'
@@ -685,7 +686,7 @@
         set guitablabel=%M\ %t
         set showtabline=1
         set linespace=2
-        colorscheme solarized
+        " colorscheme solarized
     endif
     set colorcolumn=80
 
