@@ -1,3 +1,4 @@
+scriptencoding utf-8
 "=============================================================================
 " Author:  ruichao
 " Version: 1
@@ -20,19 +21,19 @@
         " Bundle 'tpope/vim-fugitive'
         " General
             Bundle 'altercation/vim-colors-solarized'
-            Bundle 'tomasr/molokai'
-            Bundle 'godlygeek/csapprox'
+            " colorscheme : molokai
+            " Bundle 'tomasr/molokai'
+            " Bundle 'godlygeek/csapprox'
             " Coding auto-detect plugin
             Bundle 'mbbill/fencview'
-            " Bundle 'Lokaltog/powerline'
-            " Bundle 'Lokaltog/vim-powerline'
+            " powerline status
             Bundle 'bling/vim-airline'
             Bundle 'kien/rainbow_parentheses.vim'
             Bundle 'myusuf3/numbers.vim'
             Bundle 'Yggdroot/indentLine'
             " Bundle 'nathanaelkane/vim-indent-guides'
             Bundle 'airblade/vim-gitgutter'
-            Bundle 'tpope/vim-abolish.git'
+            Bundle 'rking/ag.vim'
         " General move and edit
             Bundle 'Lokaltog/vim-easymotion'
             Bundle 'spf13/vim-autoclose'
@@ -63,14 +64,15 @@
             " Bundle 'vim-scripts/TaskList.vim'
             Bundle 'terryma/vim-expand-region'
         " Snippets & AutoComplete
-            Bundle 'Valloric/YouCompleteMe'
+            "Bundle 'Valloric/YouCompleteMe'
             Bundle 'Shougo/neocomplcache'
-            " Bundle 'Shougo/neosnippet'
+            Bundle 'Shougo/neosnippet'
+            Bundle 'Shougo/neosnippet-snippets'
             " Bundle 'honza/vim-snippets'
         " Html
-            Bundle 'amirh/HTML-AutoCloseTag'
-            Bundle 'hail2u/vim-css3-syntax'
-            Bundle 'tpope/vim-haml'
+            "Bundle 'amirh/HTML-AutoCloseTag'
+            "Bundle 'hail2u/vim-css3-syntax'
+            "Bundle 'tpope/vim-haml'
         " Ruby
             Bundle 'tpope/vim-rails'
         " Python
@@ -79,11 +81,10 @@
             Bundle 'python.vim'
             Bundle 'python_match.vim'
             Bundle 'pythoncomplete'
-        "jinja2 highlight
-            " Bundle 'Glench/Vim-Jinja2-Syntax'
-        " Java
-            " Bundle 'derekwyatt/vim-scala'
-            " Bundle 'derekwyatt/vim-sbt'
+        " Clojure
+            Bundle 'guns/vim-clojure-static'
+            Bundle 'tpope/vim-leiningen'
+            Bundle 'tpope/vim-fireplace'
         " Javascript
             "Bundle 'elzr/vim-json'
             Bundle 'groenewege/vim-less'
@@ -95,15 +96,9 @@
             Bundle 'moll/vim-node'
         " Jade templates
             Bundle 'digitaltoad/vim-jade'
-        " Nginx
-            " Bundle 'thiderman/nginx-vim-syntax'
         " Markdown
             Bundle 'plasticboy/vim-markdown'
         " Bundle 'ervandew/supertab'
-        " Vim-scripts repos
-        " Bundle 'L9'
-        " non github repos
-        "Bundle 'git://git.wincent.com/command-t.git'
     " }
 
     filetype on "required!
@@ -111,6 +106,8 @@
     filetype plugin on
 
 " ===  General config  =========================================
+    " set shell = bash
+    set shell=/bin/bash
     " set how many lines of history VIM has to remember
     set history=1000
     " set to auto read when a file is changed from the outside
@@ -187,19 +184,6 @@
                                     " Selected characters/lines in visual mode
     endif
 
-    " Since we use airline plugin (Comment out this statusline config)
-    if has('statusline')
-        set laststatus=2
-        " Broken down into easily includeable segments
-        set statusline=%<%f\                     " Filename
-        set statusline+=%w%h%m%r                 " Options
-        set statusline+=%{fugitive#statusline()} " Git Hotness
-        set statusline+=\ [%{&ff}/%Y]            " Filetype
-        set statusline+=\ [%{getcwd()}]          " Current dir
-        set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
-    endif
-
-
 " ===  Fold config  ==========================================================
     set foldenable     " Auto fold code
     set foldmethod=indent " Fold method
@@ -274,9 +258,8 @@
 
 " ===  Files, backups and undo   ================================
     "Turn backup off, since most stuff is in SVN, Git etc.
-    set nobackup
+    set nobackup noswapfile
     set nowb
-    set noswapfile
     if has('persistent_undo')
         set undofile
         set undolevels=1000
@@ -285,17 +268,15 @@
     " set swap(.swp), backup(~), undo(.udf) directory to vim installation
     " please make sure the directory exists otherwise current directory will
     " be used
-    set undodir=~/k-vim/undo//,.
-    " turn off backup and swapfile, no need
-    "set backupdir=~/k-vim/backup//,.
-    "set directory=~/k-vim/swap//,.
+    set undodir=~/.vimtmp/undo
+    set viminfo+=n$HOME/.vimtmp/viminfo
 
 " ===  Text, tab and indent related  ==========================================
     set expandtab      " Use spaces instead of tabs
     set smarttab       " Be smart when using tabs
-    set shiftwidth=4   " 1 tab == 4 spaces
-    set tabstop=4
-    set softtabstop=4  " Let backspace delete 4 spaces
+    set shiftwidth=2   " 1 tab == 2 spaces
+    set tabstop=2
+    set softtabstop=2  " Let backspace delete 2 spaces
     set autoindent     " auto indent
     set smartindent    " smart indent
 
@@ -338,12 +319,6 @@
     set viminfo^=%
 
 " === hot key  ===============================================================
-
-    "强迫自己用 hjkl
-    "map <Left> <Nop>
-    "map <Right> <Nop>
-    "map <Up> <Nop>
-    "map <Down> <Nop>
 
     "Treat long lines as break lines (useful when moving around in them)
     map j gj
@@ -537,9 +512,9 @@
     let g:ctrlp_follow_symlinks=1
 
 " === easymotion =============================================================
-    "let g:EasyMotion_leader_key='<leader>'
+    let g:EasyMotion_leader_key='<leader>'
 
-"===  kien/rainbow_parentheses.vim  ==========================================
+" kien/rainbow_parentheses.vim
     let g:rbpt_colorpairs = [
         \ ['brown',       'RoyalBlue3'],
         \ ['Darkblue',    'SeaGreen3'],
@@ -565,10 +540,15 @@
     au Syntax * RainbowParenthesesLoadSquare
     au Syntax * RainbowParenthesesLoadBraces
 
-" ===  Yggdroot/indentLine  ==================================================
+" Yggdroot/indentLine
     let g:indentLine_noConcealCursor = 1
     let g:indentLine_color_term = 0
     let g:indentLine_char = '¦'
+
+" neocomplcache
+    let g:neocomplcache_enable_at_startup=1
+    let g:neocomplcache_enable_smart_case=1
+    let g:neocomplcache_min_syntax_length=3
 
 " ===  bronson/vim-trailing-whitespace  ======================================
     map <leader><space> :FixWhitespace<cr>
@@ -631,8 +611,6 @@
     " python fly check, 弥补syntastic只能打开和保存才检查语法的不足
     let g:pyflakes_use_quickfix = 0
 
-
-
 " ===  'hdima/python-syntax' ===========================================
     let python_highlight_all = 1
 
@@ -647,14 +625,32 @@
 " ===  Bundle 'vim-scripts/TaskList.vim'
     map <leader>td <Plug>TaskList
 
+" === AG setting =============================================================
+    "The silver Searcher
+    if executable('ag')
+      "use ag over grep
+      set grepprg=ag\ --nogroup\ --nocolor
+
+      "Use ag in Ctrlp for listing files.
+      let g:ctrlp_user_command = 'ag %s -l nocolor -g ""'
+
+      "Ag is fast enough thant CtrlP, doesn't need to cache
+      let g:ctrlp_use_caching = 0
+    endif
+
+    " bind K to grep word under cursor
+    nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+    " remap \ for ag searching
+    nnoremap \ :Ag<SPACE>
+
 " ===  GUI, scheme, color  ===================================================
     syntax enable
     syntax on
     set t_Co=256
     " Set font according to system
     if has("mac") || has("macunix")
-        "set guifont=inconsolata\ for\ Powerline:h16
-        set guifont=Anonymice\ Powerline:h16
+        set guifont=inconsolata\ for\ Powerline:h14
+        "set guifont=Anonymice\ Powerline:h16
     elseif has("win16") || has("win32")
         set guifont=Bitstream\ Vera\ Sans\ Mono:h11
     elseif has("linux")
