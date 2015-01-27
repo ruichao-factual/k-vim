@@ -86,7 +86,7 @@ scriptencoding utf-8
             Bundle 'tpope/vim-leiningen'
             Bundle 'tpope/vim-fireplace'
         " Javascript
-            "Bundle 'elzr/vim-json'
+            Bundle 'elzr/vim-json'
             Bundle 'groenewege/vim-less'
             Bundle 'briancollins/vim-jst'
             Bundle 'kchmck/vim-coffee-script'
