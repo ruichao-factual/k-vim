@@ -10,100 +10,99 @@ scriptencoding utf-8
 " ===  Use Vundle to manage plugin  ==========================================
     set nocompatible
     filetype off   "required!
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
     " let Vundle manage Vundle
     " required
-    Bundle 'gmarik/vundle'
+    Plugin 'gmarik/Vundle.vim'
 
     "  My Bundles here {
         " original repos on github
         " Bundle 'tpope/vim-fugitive'
         " General
-            Bundle 'altercation/vim-colors-solarized'
+            Plugin 'altercation/vim-colors-solarized'
             " colorscheme : molokai
-            " Bundle 'tomasr/molokai'
-            " Bundle 'godlygeek/csapprox'
+            " Plugin 'tomasr/molokai'
+            " Plugin 'godlygeek/csapprox'
             " Coding auto-detect plugin
-            Bundle 'mbbill/fencview'
+            Plugin 'mbbill/fencview'
             " powerline status
-            Bundle 'bling/vim-airline'
-            Bundle 'kien/rainbow_parentheses.vim'
-            Bundle 'myusuf3/numbers.vim'
-            Bundle 'Yggdroot/indentLine'
-            " Bundle 'nathanaelkane/vim-indent-guides'
-            Bundle 'airblade/vim-gitgutter'
-            Bundle 'rking/ag.vim'
+            Plugin 'bling/vim-airline'
+            Plugin 'kien/rainbow_parentheses.vim'
+            Plugin 'myusuf3/numbers.vim'
+            Plugin 'Yggdroot/indentLine'
+            " Plugin 'nathanaelkane/vim-indent-guides'
+            Plugin 'airblade/vim-gitgutter'
+            Plugin 'rking/ag.vim'
         " General move and edit
-            Bundle 'Lokaltog/vim-easymotion'
-            Bundle 'spf13/vim-autoclose'
-            Bundle 'tpope/vim-surround'
-            Bundle 'tpope/vim-repeat'
-            Bundle 'scrooloose/nerdtree'
-            Bundle 'corntrace/bufexplorer'
-            Bundle 'kien/ctrlp.vim'
-            Bundle 'terryma/vim-multiple-cursors'
-            " Bundle 'vim-scripts/sessionman.vim'
+            Plugin 'Lokaltog/vim-easymotion'
+            Plugin 'spf13/vim-autoclose'
+            Plugin 'tpope/vim-surround'
+            Plugin 'tpope/vim-repeat'
+            Plugin 'scrooloose/nerdtree'
+            Plugin 'corntrace/bufexplorer'
+            Plugin 'kien/ctrlp.vim'
+            Plugin 'terryma/vim-multiple-cursors'
+            " Plugin 'vim-scripts/sessionman.vim'
             " allows you to configure % to match more than just single characters
-            Bundle 'matchit.zip'
-            Bundle 'bronson/vim-trailing-whitespace'
-            " Bundle 'jistr/vim-nerdtree-tabs'
-            Bundle 'mbbill/undotree'
+            Plugin 'matchit.zip'
+            Plugin 'bronson/vim-trailing-whitespace'
+            " Plugin 'jistr/vim-nerdtree-tabs'
+            Plugin 'mbbill/undotree'
         " General Programming
-            Bundle 'tpope/vim-fugitive'
+            Plugin 'tpope/vim-fugitive'
             " Pick one of the checksyntax, jslint, or syntastic
-            Bundle 'scrooloose/syntastic'
-            Bundle 'kevinw/pyflakes-vim'
-            " Bundle 'mattn/webapi-vim'
-            " Bundle 'mattn/gist-vim'
-            Bundle 'scrooloose/nerdcommenter'
-            " Bundle 'godlygeek/tabular'
+            Plugin 'scrooloose/syntastic'
+            Plugin 'kevinw/pyflakes-vim'
+            " Plugin 'mattn/webapi-vim'
+            " Plugin 'mattn/gist-vim'
+            Plugin 'scrooloose/nerdcommenter'
+            " Plugin 'godlygeek/tabular'
             if executable('ctags')
-                Bundle 'majutsushi/tagbar'
+                Plugin 'majutsushi/tagbar'
             endif
-            " Bundle 'vim-scripts/TaskList.vim'
-            Bundle 'terryma/vim-expand-region'
+            " Plugin 'vim-scripts/TaskList.vim'
+            Plugin 'terryma/vim-expand-region'
         " Snippets & AutoComplete
-            "Bundle 'Valloric/YouCompleteMe'
-            Bundle 'Shougo/neocomplcache'
-            Bundle 'Shougo/neosnippet'
-            Bundle 'Shougo/neosnippet-snippets'
-            " Bundle 'honza/vim-snippets'
+            "Plugin 'Valloric/YouCompleteMe'
+            Plugin 'Shougo/neocomplcache'
+            Plugin 'Shougo/neosnippet'
+            Plugin 'Shougo/neosnippet-snippets'
+            " Plugin 'honza/vim-snippets'
         " Html
-            "Bundle 'amirh/HTML-AutoCloseTag'
-            "Bundle 'hail2u/vim-css3-syntax'
-            "Bundle 'tpope/vim-haml'
+            "Plugin 'amirh/HTML-AutoCloseTag'
+            "Plugin 'hail2u/vim-css3-syntax'
+            "Plugin 'tpope/vim-haml'
         " Ruby
-            Bundle 'tpope/vim-rails'
+            Plugin 'tpope/vim-rails'
         " Python
-            Bundle 'hdima/python-syntax'
-            Bundle 'nvie/vim-flake8'
-            Bundle 'python.vim'
-            Bundle 'python_match.vim'
-            Bundle 'pythoncomplete'
+            Plugin 'hdima/python-syntax'
+            Plugin 'nvie/vim-flake8'
+            Plugin 'python.vim'
+            Plugin 'python_match.vim'
+            Plugin 'pythoncomplete'
         " Clojure
-            Bundle 'guns/vim-clojure-static'
-            Bundle 'tpope/vim-leiningen'
-            Bundle 'tpope/vim-fireplace'
+            Plugin 'guns/vim-clojure-static'
+            Plugin 'tpope/vim-leiningen'
+            Plugin 'tpope/vim-fireplace'
         " Javascript
-            "Bundle 'elzr/vim-json'
-            Bundle 'groenewege/vim-less'
-            Bundle 'briancollins/vim-jst'
-            Bundle 'kchmck/vim-coffee-script'
-            Bundle "pangloss/vim-javascript"
-            Bundle 'nono/jquery.vim'
+            "Plugin 'elzr/vim-json'
+            Plugin 'groenewege/vim-less'
+            Plugin 'briancollins/vim-jst'
+            Plugin 'kchmck/vim-coffee-script'
+            Plugin 'pangloss/vim-javascript'
+            Plugin 'nono/jquery.vim'
         " NodeJs
-            Bundle 'moll/vim-node'
+            Plugin 'moll/vim-node'
         " Jade templates
-            Bundle 'digitaltoad/vim-jade'
+            Plugin 'digitaltoad/vim-jade'
         " Markdown
-            Bundle 'plasticboy/vim-markdown'
-        " Bundle 'ervandew/supertab'
+            Plugin 'plasticboy/vim-markdown'
+        " Plugin 'ervandew/supertab'
     " }
 
-    filetype on "required!
-    filetype indent on "required!
-    filetype plugin on
+    call vundle#end() " required
+    filetype plugin indent on "required!
 
 " ===  General config  =========================================
     " set shell = bash
